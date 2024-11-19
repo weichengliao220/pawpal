@@ -1,5 +1,6 @@
 class Booking < ApplicationRecord
-  belongs_to :petsitter
   belongs_to :user, dependent: :destroy
-  validates :status, presence: true, inclusion: { in: %w(pending accepted declined), message: "%{value} is not a valid status" }
+  belongs_to :petsitter, dependent: :destroy
+  validates :user_id, :petsitter_id, :start_date, :end_date, presence: true
+  validate :end_date_after_start_date
 end
