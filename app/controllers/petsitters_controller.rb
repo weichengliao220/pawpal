@@ -25,6 +25,6 @@ class PetsittersController < ApplicationController
   private
 
   def petsitter_params
-    params.require(:petsitter).permit(:user_id, :bio, :price, :picture_url, :address)
+    params.require(:petsitter).permit(:user_id, :bio, :price, :picture_url, :address, :photo)
   end
 end

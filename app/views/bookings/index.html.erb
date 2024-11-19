@@ -1,4 +1,5 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)"><%= cl_image_path("https://res.cloudinary.com/dgibzjysi/image/upload/v1731649925/production/jojkjp2lnmr0mfi762lbjovhpag9.png") %></div>
+<div class="banner" style="height: 300px; background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://res.cloudinary.com/dgibzjysi/image/upload/v1731649925/production/jojkjp2lnmr0mfi762lbjovhpag9.png')">
+</div>
 <div class= "container mt-3">
   <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -10,7 +11,7 @@
     </ul>
         <ul class="list-group list-group-horizontal-sm">
          <% @bookings.each do |booking| %>
-          <li class="list-group-item"><%= link_to booking.start_date, booking_path(booking) %></li>
+          <li class="list-group-item"><%= link_to booking.status, booking_path(booking) %></li>
          <% end %>
         </ul>
   </div>
