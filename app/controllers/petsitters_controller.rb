@@ -1,6 +1,7 @@
 class PetsittersController < ApplicationController
   def index
     @petsitters = Petsitter.all
+    @breeds = ["dog", "cat", "bird", "fish"]
   end
 
   def show
