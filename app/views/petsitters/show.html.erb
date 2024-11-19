@@ -1,9 +1,14 @@
-<%= @petsitter.picture_url %>
-<%=  @petsitter.user.username %>
-<h3><%= @petsitter.price %>€</h3>
-<%= @petsitter.bio %>
-<%= @petsitter.bookings.each do |booking| %>
-  <%= booking.start_date %>
-  <%= booking.end_date %>
-<% end %>
-#test
+<div class='main-div'>
+
+  <div class='petsitter-info'>
+    <%= @petsitter.picture_url %>
+    <%=  @petsitter.user.username %>
+    <h3><%= @petsitter.price %>€</h3>
+    <%= @petsitter.bio %>
+  </div>
+
+  <div class='signup-form-petsitter'>
+    <%= render 'form_signup' %>
+  </div>
+
+</div>
