@@ -26,11 +26,13 @@
   <div class="container">
     <div class="row mt-3 bg-white">
       <% @petsitters.each do |petsitter| %>
-        <div class="card col-3 bg-white p-3 mb-4 shadow-sm">
-          <a href="<%= petsitter_path(petsitter) %>">
-            <%= image_tag petsitter.picture_url, class: "rounded" %>
-          </a>
-          <%= petsitter.user.username %>
+        <div class="col-3">
+          <div class="card bg-white p-1 mb-3 shadow-sm">
+            <a href="<%= petsitter_path(petsitter) %>">
+              <%= image_tag petsitter.picture_url, class: "rounded" %>
+            </a>
+            <%= petsitter.user.username %>
+          </div>
         </div>
       <% end %>
     </div>
