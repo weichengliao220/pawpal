@@ -3,12 +3,17 @@
     <img src="https://hvhct.com/wp-content/uploads/2020/04/AdobeStock_75588923-scaled.jpeg", alt="background image" width=100%, height=400>
   </div>
 
-  <div class="filter-banner mt-3">
-    <%= form_with model: @petsitter do |f| %>
-      <%= f.select :breeds, options_for_select(@breeds, params[:breed]), { include_blank: 'Select a Breed' }, class: "form-control" %>
-      <%= f.text_field :location, placeholder: "Enter location..." %>
-      <%= f.submit "Search" %>
-    <% end %>
+  <div class="filter-banner mt-3 d-flex justify-content-between">
+    <div>
+      <h3>Filter</h3>
+    </div>
+    <div>
+      <%= form_with model: @petsitter do |f| %>
+        <%= f.select :breeds, options_for_select(@breeds, params[:breed]), { include_blank: 'Select a Breed' }, class: "form-control" %>
+        <%= f.text_field :location, placeholder: "Enter location..." %>
+        <%= f.submit "Search" %>
+      <% end %>
+    </div>
   </div>
 
   <div>
