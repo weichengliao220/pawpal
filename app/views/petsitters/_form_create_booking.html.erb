@@ -1,4 +1,5 @@
 <%= simple_form_for @booking do |f| %>
+
   <%= f.input :user, as: :hidden, input_html: { value: @user } %>
   <%= f.input :petsitter, as: :hidden, input_html: { value: @petsitter } %>
 
@@ -6,5 +7,6 @@
   <%= f.input :end_date %>
   <%= f.input :location, as: :boolean, label: 'Do you want the petsitter to keep your pet at his home ?' %>
 
-  <%= f.submit "Add booking", class: "btn btn-primary" %>
+  <%= f.submit "Add Booking", class: "btn btn-primary" %>
+
 <% end %>

@@ -5,12 +5,16 @@
   </div>
 
   <div class='petsitter-info'>
-    <%=  @petsitter.user.username %>
-    <h3><%= @petsitter.price %>€</h3>
+    <h2>
+      <%=  @petsitter.user.username %>
+    </h2>
+    <h3>
+      <%= @petsitter.price %>€ / day
+    </h3>
     <%= @petsitter.bio %>
   </div>
 
-  <div class='signup-form-petsitter'>
+  <div class='create-booking-form'>
     <%= render 'form_create_booking', user: @user, petsitter: @petsitter, booking: @booking %>
   </div>
 
