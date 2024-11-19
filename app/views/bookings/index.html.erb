@@ -1,0 +1,16 @@
+<div class= "container mt-3">
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      Bookings / Requests
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="#">Bookings</a></li>
+      <li><a class="dropdown-item" href="#">Rquests</a></li>
+        <ul class="list-group list-group-horizontal-sm">
+         <% @bookings.each do |booking| %>
+          <li class="list-group-item"><%= link_to booking.date, booking_path(booking) %></li>
+         <% end %>
+        </ul>
+    </ul>
+  </div>
+</div>
