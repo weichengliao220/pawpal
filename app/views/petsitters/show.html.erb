@@ -1,7 +1,7 @@
 <div class='main-div'>
 
   <div class='banner-petsitter-display'>
-    <%= @petsitter.picture_url %>
+    <%= image_tag @petsitter.picture_url if @petsitter.picture_url.present? %>
   </div>
 
   <div class='petsitter-info'>

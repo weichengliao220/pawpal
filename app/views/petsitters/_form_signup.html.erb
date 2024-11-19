@@ -1,6 +1,6 @@
 <%= simple_form_for @petsitter do |f| %>
 
-  <% f.input :user, as: :hidden, input_html: { value: @user }%>
+  <% f.input :user_id, as: :hidden, input_html: { value: @user }%>
 
   <%= f.input :price %>
   <%= f.input :bio %>
