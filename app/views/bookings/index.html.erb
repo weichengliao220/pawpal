@@ -4,16 +4,66 @@
   <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
       Bookings / Requests
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse" >Bookings</a></li>
+        <li><a class="dropdown-item" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse" >Rquests</a></li>
+      </ul>
     </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-      <li><a class="dropdown-item" href="#">Bookings</a></li>
-      <li><a class="dropdown-item" href="#">Rquests</a></li>
-    </ul>
-        <ul class="list-group list-group-horizontal-sm">
+    <div class="collapse collapse-horizontal" id="collapse">
+      <div class="card card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
+              <th scope="col">No</th>
+              <th scope="col">Yes</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>""</td>
+              <td>""</td>
+
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+              <td>""</td>
+              <td>""</td>
+
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td colspan="2">Larry the Bird</td>
+              <td>@twitter</td>
+              <td>""</td>
+              <td>""</td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="fixed-bottom text-center">
+<h3><%= "Disclaimer" %></h3>
+<p><%= "We are not reposbile if the petsitter eats your pet." %></p>
+</div>
+
+
+<!--        <ul class="list-group list-group-horizontal-sm">
          <% @bookings.each do |booking| %>
           <li class="list-group-item"><%= link_to booking.status, booking_path(booking) %></li>
          <% end %>
-        </ul>
-  </div>
-
-</div>
+        </ul> -->
