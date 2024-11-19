@@ -1,3 +1,4 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)"><%= cl_image_path("https://res.cloudinary.com/dgibzjysi/image/upload/v1731649925/production/jojkjp2lnmr0mfi762lbjovhpag9.png") %></div>
 <div class= "container mt-3">
   <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -6,11 +7,12 @@
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
       <li><a class="dropdown-item" href="#">Bookings</a></li>
       <li><a class="dropdown-item" href="#">Rquests</a></li>
+    </ul>
         <ul class="list-group list-group-horizontal-sm">
          <% @bookings.each do |booking| %>
-          <li class="list-group-item"><%= link_to booking.date, booking_path(booking) %></li>
+          <li class="list-group-item"><%= link_to booking.start_date, booking_path(booking) %></li>
          <% end %>
         </ul>
-    </ul>
   </div>
+
 </div>
