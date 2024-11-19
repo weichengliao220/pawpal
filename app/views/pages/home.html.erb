@@ -1,11 +1,9 @@
 <%# <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p> %>
-<div class="container"></div>
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/dxkjh8nhh/image/upload/v1731991259/OVRS-connect-shutterstock_2132259743_qq4bad.jpg);">
-  <h1 class="mx-2"><strong>PawPal</strong></h1>
   <p class="mx-2">"Because pets are family."</p>
-  <a class="btn btn-primary mx-2 my-7" href="#">Booka a Petsitter</a>
-  <a class="btn btn-primary mx-2 my-7" href="#">Become a Petsitter</a>
+  <%= link_to "Book a Petsitter", bookings_path, class: "btn btn-primary mx-2 my-5" %>
+  <%= link_to "Become a Petsitter", petsitters_path, class: "btn btn-primary mx-2 my-5" %>
 </div>
 </div>
 <div class="card-category mt-2" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= image_path("keybenefits.png")%>');">
