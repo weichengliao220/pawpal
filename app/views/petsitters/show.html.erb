@@ -1,14 +1,17 @@
 <div class='main-div'>
 
-  <div class='petsitter-info'>
+  <div class='banner-petsitter-display'>
     <%= @petsitter.picture_url %>
+  </div>
+
+  <div class='petsitter-info'>
     <%=  @petsitter.user.username %>
     <h3><%= @petsitter.price %>€</h3>
     <%= @petsitter.bio %>
   </div>
 
   <div class='signup-form-petsitter'>
-    <%= render 'form_signup' %>
+    <%= render 'form_create_booking', user: @user, petsitter: @petsitter, booking: @booking %>
   </div>
 
 </div>

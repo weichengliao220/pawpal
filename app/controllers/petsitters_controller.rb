@@ -7,6 +7,7 @@ class PetsittersController < ApplicationController
     @petsitter = Petsitter.find(params[:id])
     @bookings = Booking.where(petsitter_id: @petsitter.id)
     @booking = Booking.new
+    @user = current_user
   end
 
   def new
