@@ -15,17 +15,16 @@ class BookingsController < ApplicationController
     @petsitter = Petsitter.find(params[:petsitter_id])
     @booking = Booking.new(booking_params)
     @booking.petsitter = @petsitter
-    @booking.user = current_user
-    if @booking.save
-      redirect_to booking_path(@booking)
-    else
-      raise
-    end
+    @user = current_user
+    @booking.user = @user
+    raise unless @booking.save
+
+    redirect_to bookings_path(@booking)
   end
 
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date)
+    params.require(:booking).permit(:user_id, :petsitter_id, :start_date, :end_date, :location)
   end
 end
