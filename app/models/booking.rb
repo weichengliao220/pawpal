@@ -1,6 +1,5 @@
 class Booking < ApplicationRecord
-  belongs_to :user, dependent: :destroy
-  belongs_to :petsitter, dependent: :destroy
+  belongs_to :user
+  belongs_to :petsitter
   validates :user_id, :petsitter_id, :start_date, :end_date, presence: true
-  validate :end_date_after_start_date
 end

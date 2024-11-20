@@ -3,6 +3,6 @@ class Petsitter < ApplicationRecord
   has_many :bookings
   has_one_attached :photo
   validates :price, presence: true
-  validates :acceptable_pets, presence: true, inclusion: { in: %w(dog cat bird fish), message: "%{value} is not a valid pet type" }
+  validates :acceptable_pets, presence: true
   validates :bio, presence: true, length: { minimum: 5 }
 end

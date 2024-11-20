@@ -8,42 +8,46 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+require 'faker'
+
+# Clear the database
 Booking.destroy_all
 Petsitter.destroy_all
 User.destroy_all
 
-users_data = [
-  {
-    username: "John",
-    email: "test@gmail.com",
-    pets: "dog",
-    address: "25 rue de la paix, 75001 Paris",
-    password: "testpassword"
-  },
-  {
-    username: "Patrick",
-    email: "test2@gmail.com",
-    pets: "bird",
-    address: "26 rue de la paix, 75001 Paris",
-    password: "testpassword"
-  }
-]
+# Create Users
+10.times do
+  user = User.create!(
+    email: Faker::Internet.unique.email,
+    password: 'password', # or any secure default
+    username: Faker::Internet.username,
+    pets: Faker::Creature::Animal.name,
+    address: Faker::Address.full_address,
+    avatar: Faker::Avatar.image
+  )
 
-users_data.each do |user_data|
-  user = User.create!(user_data)
+  # Create Petsitters linked to Users
   petsitter = Petsitter.create!(
-    user_id: user.id,
-    price: 10,
-    bio: "I love animals",
-    picture_url: "https://www.google.com",
-    acceptable_pets: user_data[:pets]
+    user: user,
+    price: rand(10..100),
+    bio: Faker::Lorem.paragraph,
+    picture_url: Faker::LoremFlickr.image(size: "300x300", search_terms: ['pets']),
+    acceptable_pets: %w[dog cat bird fish].sample(rand(1..4)).join(", ")
   )
-  Booking.create!(
-    user_id: user.id,
-    petsitter_id: petsitter.id,
-    start_date: "2024-11-19",
-    end_date: "2024-11-20",
-    status: "pending",
-    location: true
-  )
+
+  # Create Bookings linked to Users and Petsitters
+  3.times do
+    start_date = Faker::Date.forward(days: rand(1..30))
+    end_date = start_date + rand(1..7).days
+    Booking.create!(
+      user: user,
+      petsitter: petsitter,
+      start_date: start_date,
+      end_date: end_date,
+      status: %w[pending accepted declined].sample,
+      location: [true, false].sample
+    )
+  end
 end
+
+puts "Seeded #{User.count} users, #{Petsitter.count} petsitters, and #{Booking.count} bookings!"
