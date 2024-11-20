@@ -1,11 +1,14 @@
 class PetsittersController < ApplicationController
   def index
     @petsitters = Petsitter.all
+    @breeds = ["dog", "cat", "bird", "fish"]
   end
 
   def show
     @petsitter = Petsitter.find(params[:id])
+    @bookings = Booking.where(petsitter_id: @petsitter.id)
     @booking = Booking.new
+    @user = current_user
   end
 
   def new
