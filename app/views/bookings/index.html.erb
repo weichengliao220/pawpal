@@ -52,12 +52,14 @@
     </div>
   </div>
 </div>
-<div class="relative-bottom text-center">
-  <h3><strong><%= "Disclaimer" %></h3>
-    <p><%= "We are not reposbile if the petsitter eats your pet. They'eating the dogs!" %></p>
-  </div>
-  <!--        <ul class="list-group list-group-horizontal-sm">
          <% @bookings.each do |booking| %>
-          <li class="list-group-item"><%= link_to booking.status, booking_path(booking) %></li>
+          <li class="list-group-item"><%= booking.status %></li>
          <% end %>
-        </ul> -->
+        </ul>
+
+<h1>Requests</h1>
+<ul class="list-group list-group-horizontal-sm">
+         <% @requests.each do |booking| %>
+          <li class="list-group-item"><%= booking.status %></li>
+         <% end %>
+        </ul>

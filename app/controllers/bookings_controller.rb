@@ -1,9 +1,8 @@
 class BookingsController < ApplicationController
   def index
     @bookings = Booking.where(user_id: current_user)
-
     petsitter_ids = Petsitter.where(user_id: current_user).pluck(:id)
-    @bookings += Booking.where(petsitter_id: petsitter_ids)
+    @requests = Booking.where(petsitter_id: petsitter_ids)
   end
 
   def show
