@@ -2,27 +2,25 @@
   <div class="background-image">
     <img src="https://hvhct.com/wp-content/uploads/2020/04/AdobeStock_75588923-scaled.jpeg", alt="background image" width=100%, height=400>
   </div>
-
   <div class="filter-banner mt-3 d-flex justify-content-between px-5">
     <div>
       <h2 class="fw-bold">Petsitters</h2>
     </div>
     <div>
-      <h5>Filters</h5>
+      <h5 class>Filters</h5>
       <%= form_with model: @petsitter do |f| %>
         <%= f.select :breeds, options_for_select(@breeds, params[:breed]), { include_blank: 'Select a Breed' }, class: "form-select" %>
         <div class="row mt-2">
-        <div class="col-8 pe-0">
-          <%= f.text_field :location, placeholder: "Enter location...", class: "form-control" %>
-        </div>
-        <div class="col-4">
-          <%= f.submit "Search", class: "btn btn-primary w-100" %>
-        </div>
+          <div class="col-8 pe-0">
+            <%= f.text_field :location, placeholder: "Enter location...", class: "form-control" %>
+          </div>
+          <div class="col-4">
+            <%= f.submit "Search", class: "btn btn-primary w-100" %>
+          </div>
         </div>
       <% end %>
     </div>
   </div>
-
   <div class="container">
     <div class="row mt-3 bg-white">
       <% @petsitters.each do |petsitter| %>
