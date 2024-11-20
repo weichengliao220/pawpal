@@ -19,13 +19,19 @@ class BookingsController < ApplicationController
     @booking.petsitter = @petsitter
     @user = current_user
     @booking.user = @user
+    @booking.status = "pending"
     @booking.save
     redirect_to bookings_path(@booking)
   end
 
+  def update
+    @booking = Booking.find(params[:id])
+    @booking.status = "declined"
+    redirect_to bookings_path(@booking)
+  end
   private
 
   def booking_params
-    params.require(:booking).permit(:user_id, :petsitter_id, :start_date, :end_date, :location)
+    params.require(:booking).permit(:user_id, :petsitter_id, :start_date, :end_date, :location, :status)
   end
 end
