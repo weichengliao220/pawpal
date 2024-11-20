@@ -19,14 +19,21 @@
     </div>
   </div>
   <div class="container">
-    <div class="row mt-3 bg-white">
+    <div class="row mt-3">
       <% @petsitters.each do |petsitter| %>
         <div class="col-3">
-          <div class="card bg-white p-1 mb-3 shadow-sm">
-            <a href="<%= petsitter_path(petsitter) %>">
-              <%= cl_image_tag(petsitter.photo.key, width: 220, height: 200, crop: "auto") %>
-            </a>
-            <%= petsitter.user.username %>
+          <div class="petsitter-card">
+            <div class="card-image">
+              <%= link_to petsitter_path(petsitter) do %>
+                <%= cl_image_tag(petsitter.photo.key, crop: :fill) %>
+              <% end %>
+            </div>
+            <div class="card-info">
+              <div class="username">
+                <i class="fa-solid fa-user me-2"></i>
+                <%= petsitter.user.username %>
+              </div>
+            </div>
           </div>
         </div>
       <% end %>
