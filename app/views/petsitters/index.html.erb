@@ -29,7 +29,7 @@
         <div class="col-3">
           <div class="card bg-white p-1 mb-3 shadow-sm">
             <a href="<%= petsitter_path(petsitter) %>">
-              <%= image_tag petsitter.picture_url, class: "rounded" %>
+              <%= cl_image_tag(petsitter.photo.key, width: 220, height: 200, crop: "auto") %>
             </a>
             <%= petsitter.user.username %>
           </div>
