@@ -1,4 +1,4 @@
-<div class="banner" style="height: 300px; background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://res.cloudinary.com/dgibzjysi/image/upload/v1731649925/production/jojkjp2lnmr0mfi762lbjovhpag9.png')">
+<div class="banner" style="height: 300px; background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://res.cloudinary.com/dxkjh8nhh/image/upload/v1731907335/happy_dog_being_held_by_woman.jpeg_hoxb3k.jpg')">
 </div>
 <div class= "container mt-3">
   <div class="dropdown">
@@ -6,7 +6,7 @@
       Bookings / Requests
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li><a class="dropdown-item" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse" >Bookings</a></li>
-        <li><a class="dropdown-item" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse" >Rquests</a></li>
+        <li><a class="dropdown-item" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse" >Requests</a></li>
       </ul>
     </button>
     <div class="collapse collapse-horizontal" id="collapse">
@@ -20,7 +20,6 @@
               <th scope="col">Handle</th>
               <th scope="col">No</th>
               <th scope="col">Yes</th>
-
             </tr>
           </thead>
           <tbody>
@@ -31,7 +30,6 @@
               <td>@mdo</td>
               <td>""</td>
               <td>""</td>
-
             </tr>
             <tr>
               <th scope="row">2</th>
@@ -40,7 +38,6 @@
               <td>@fat</td>
               <td>""</td>
               <td>""</td>
-
             </tr>
             <tr>
               <th scope="row">3</th>
@@ -48,7 +45,6 @@
               <td>@twitter</td>
               <td>""</td>
               <td>""</td>
-
             </tr>
           </tbody>
         </table>
@@ -56,13 +52,6 @@
     </div>
   </div>
 </div>
-<div class="fixed-bottom text-center">
-<h3><%= "Disclaimer" %></h3>
-<p><%= "We are not reposbile if the petsitter eats your pet." %></p>
-</div>
-
-<h1>Bookings</h1>
-<ul class="list-group list-group-horizontal-sm">
          <% @bookings.each do |booking| %>
           <li class="list-group-item"><%= booking.status %></li>
          <% end %>
