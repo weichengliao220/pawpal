@@ -1,49 +1,52 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top">
   <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <div class="d-flex flex-row">
-        <div class="p-2 heavy-text"><strong>PawPal</strong></div>
-        <div class="p-2 my-2"><i class="fa-solid fa-paw"></i></div>
-        <div class="p-2"><i class="fa-solid fa-paw"></i></div>
-        <div class="p-2 my-2"><i class="fa-solid fa-paw"></i></div>
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <div class="d-flex flex-row align-items-center">
+        <div class="heavy-text">PawPal</div>
+        <div class="paw-icons">
+          <i class="fa-solid fa-paw ms-2"></i>
+          <i class="fa-solid fa-paw ms-1"></i>
+          <i class="fa-solid fa-paw ms-1"></i>
+        </div>
       </div>
     <% end %>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav ms-auto">
         <% if user_signed_in? %>
-          <li class="nav-item active">
+          <li class="nav-item">
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Petsitter", petsitters_path, class: "nav-link" %>
+            <%= link_to "Find a Petsitter", petsitters_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Bookings", bookings_path, class: "nav-link" %>
+            <%= link_to "My Bookings", bookings_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="avatar" id="navbarDropdown
-            " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-            </a>
+            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              <%= link_to "My Profile", "#", class: "dropdown-item" %>
+              <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
             </div>
           </li>
         <% else %>
           <li class="nav-item">
             <%= link_to "Home", root_path, class: "nav-link" %>
-            <%= link_to "Petsitter", petsitters_path, class: "nav-link" %>
-            <%= link_to "Bookings", bookings_path, class: "nav-link" %>
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>
-        </li>
-      <% end %>
-    </ul>
+          <li class="nav-item">
+            <%= link_to "Find a Petsitter", petsitters_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-outline-primary ms-2" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-</div>
 </div>
