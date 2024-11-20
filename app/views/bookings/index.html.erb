@@ -14,7 +14,7 @@
 <h1>Bookings</h1>
 <ul class="list-group list-group-horizontal-sm">
 <% @bookings.each do |booking| %>
-  <li class="list-group-item"><%= booking.user.username %></li>
+  <li class="list-group-item"><%= booking.status %> booking request from <%= booking.start_date %> to <%= booking.end_date %> </li>
 
 <% end %>
 </ul>
@@ -22,6 +22,6 @@
 <h1>Requests</h1>
 <ul class="list-group list-group-horizontal-sm">
          <% @requests.each do |booking| %>
-          <li class="list-group-item"><%= booking.status %></li>
+          <li class="list-group-item">From <%= booking.user.username %></li>
          <% end %>
         </ul>
