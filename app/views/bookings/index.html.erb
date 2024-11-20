@@ -1,27 +1,130 @@
 <div class="banner" style="height: 300px; background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://res.cloudinary.com/dxkjh8nhh/image/upload/v1731907335/happy_dog_being_held_by_woman.jpeg_hoxb3k.jpg')">
 </div>
-<div class= "container mt-3">
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-      Bookings / Requests
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse" >Bookings</a></li>
-        <li><a class="dropdown-item" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse" >Requests</a></li>
-      </ul>
-    </button>
 
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Dashboard</h2>
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Filter View
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#bookings-section">My Bookings</a></li>
+            <li><a class="dropdown-item" href="#requests-section">My Requests</a></li>
+          </ul>
+        </div>
+      </div>
 
-<h1>Bookings</h1>
-<ul class="list-group list-group-horizontal-sm">
-<% @bookings.each do |booking| %>
-  <li class="list-group-item"><%= booking.status %> booking request from <%= booking.start_date %> to <%= booking.end_date %> </li>
+      <div id="bookings-section" class="mb-5">
+        <div class="card">
+          <div class="card-header bg-white">
+            <h3 class="mb-0">My petsitting requests</h3>
+          </div>
+          <div class="card-body">
+            <% if @bookings.any? %>
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>From</th>
+                      <th>Status</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @bookings.sort_by { |b| b.status == 'accepted' ? 0 : 1 }.each do |booking| %>
+                      <tr class="<%= 'bg-success bg-opacity-10' if booking.status == 'accepted' %>">
+                        <td><%= booking.user.username %></td>
+                        <td>
+                          <% case booking.status %>
+                          <% when 'accepted' %>
+                            <span class="badge bg-success">Accepted</span>
+                          <% when 'pending' %>
+                            <span class="badge bg-warning text-dark">Pending</span>
+                          <% when 'declined' %>
+                            <span class="badge bg-danger">Declined</span>
+                          <% end %>
+                        </td>
+                        <td><%= booking.start_date.strftime("%B %d, %Y") %></td>
+                        <td><%= booking.end_date.strftime("%B %d, %Y") %></td>
+                        <td>
+                          <div class="btn-group" role="group">
+                            <% if booking.status != 'declined' %>
+                              <%= button_to "Cancel", "#", method: :patch, class: "btn btn-sm btn-outline-danger", data: { confirm: "Are you sure you want to cancel this booking?" } %>
+                            <% end %>
+                          </div>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            <% else %>
+              <p class="text-muted text-center my-4">No bookings found</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
 
-<% end %>
-</ul>
-
-<h1>Requests</h1>
-<ul class="list-group list-group-horizontal-sm">
-         <% @requests.each do |booking| %>
-          <li class="list-group-item">From <%= booking.user.username %></li>
-         <% end %>
-        </ul>
+      <div id="requests-section">
+        <div class="card">
+          <div class="card-header bg-white">
+            <h3 class="mb-0">My upcoming jobs</h3>
+          </div>
+          <div class="card-body">
+            <% if @requests.any? %>
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>From</th>
+                      <th>Status</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @requests.sort_by { |b| b.status == 'accepted' ? 0 : 1 }.each do |booking| %>
+                      <tr class="<%= 'bg-success bg-opacity-10' if booking.status == 'accepted' %>">
+                        <td><%= booking.user.username %></td>
+                        <td>
+                          <% case booking.status %>
+                          <% when 'accepted' %>
+                            <span class="badge bg-success">Accepted</span>
+                          <% when 'pending' %>
+                            <span class="badge bg-warning text-dark">Pending</span>
+                          <% when 'declined' %>
+                            <span class="badge bg-danger">Declined</span>
+                          <% end %>
+                        </td>
+                        <td><%= booking.start_date.strftime("%B %d, %Y") %></td>
+                        <td><%= booking.end_date.strftime("%B %d, %Y") %></td>
+                        <td>
+                          <div class="btn-group" role="group">
+                            <% if booking.status == 'pending' %>
+                              <%= button_to "Accept", "#", method: :patch, class: "btn btn-sm btn-success me-2" %>
+                              <%= button_to "Decline", "#", method: :patch, class: "btn btn-sm btn-danger" %>
+                            <% else %>
+                              <%= link_to "View client details", "#", class: "btn btn-sm btn-outline-primary" %>
+                            <% end %>
+                          </div>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            <% else %>
+              <p class="text-muted text-center my-4">No requests found</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
