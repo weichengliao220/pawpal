@@ -1,7 +1,7 @@
 <%= simple_form_for @booking do |f| %>
 
-  <%= f.input :user_id, as: :hidden, input_html: { value: @user.id } %>
-  <%= f.input :petsitter_id, as: :hidden, input_html: { value: @petsitter.id } %>
+  <%= f.input :user_id, as: :hidden, input_html: { value: @user } %>
+  <%= f.input :petsitter_id, as: :hidden, input_html: { value: @petsitter } %>
 
   <%= f.input :start_date %>
   <%= f.input :end_date %>
