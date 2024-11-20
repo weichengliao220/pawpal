@@ -19,8 +19,7 @@ class BookingsController < ApplicationController
     @booking.petsitter = @petsitter
     @user = current_user
     @booking.user = @user
-    raise unless @booking.save
-
+    @booking.save
     redirect_to bookings_path(@booking)
   end
 

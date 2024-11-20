@@ -9,54 +9,13 @@
         <li><a class="dropdown-item" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse" >Requests</a></li>
       </ul>
     </button>
-    <div class="collapse collapse-horizontal" id="collapse">
-      <div class="card card-body">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
-              <th scope="col">No</th>
-              <th scope="col">Yes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>""</td>
-              <td>""</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>""</td>
-              <td>""</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-              <td>""</td>
-              <td>""</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 <h1>Bookings</h1>
 <ul class="list-group list-group-horizontal-sm">
 <% @bookings.each do |booking| %>
-  <li class="list-group-item"><%= booking.status %></li>
+  <li class="list-group-item"><%= booking.user.username %></li>
+
 <% end %>
 </ul>
 
