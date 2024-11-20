@@ -61,9 +61,16 @@
 <p><%= "We are not reposbile if the petsitter eats your pet." %></p>
 </div>
 
-
-<!--        <ul class="list-group list-group-horizontal-sm">
+<h1>Bookings</h1>
+<ul class="list-group list-group-horizontal-sm">
          <% @bookings.each do |booking| %>
-          <li class="list-group-item"><%= link_to booking.status, booking_path(booking) %></li>
+          <li class="list-group-item"><%= booking.status %></li>
          <% end %>
-        </ul> -->
+        </ul>
+
+<h1>Requests</h1>
+<ul class="list-group list-group-horizontal-sm">
+         <% @requests.each do |booking| %>
+          <li class="list-group-item"><%= booking.status %></li>
+         <% end %>
+        </ul>
