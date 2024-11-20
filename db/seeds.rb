@@ -16,7 +16,7 @@ Petsitter.destroy_all
 User.destroy_all
 
 # Create Users
-10.times do
+50.times do
   user = User.create!(
     email: Faker::Internet.unique.email,
     password: 'password', # or any secure default
@@ -29,8 +29,9 @@ User.destroy_all
   # Create Petsitters linked to Users
   petsitter = Petsitter.create!(
     user: user,
-    price: rand(10..100),
+    price: rand(2..6) * 500,
     bio: Faker::Lorem.paragraph,
+    # addresses: %w[shinjuku shibuya meguro shinagawa roppongi].sample(rand(1..5)),
     picture_url: Faker::LoremFlickr.image(size: "300x300", search_terms: ['pets']),
     acceptable_pets: %w[dog cat bird fish].sample(rand(1..4)).join(", ")
   )

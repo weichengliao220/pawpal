@@ -2,6 +2,7 @@ class PetsittersController < ApplicationController
   def index
     @petsitters = Petsitter.all
     @breeds = ["dog", "cat", "bird", "fish"]
+    # @addresses = ["shinjuku", "shibuya", "meguro", "shinagawa", "roppongi"]
   end
 
   def show
