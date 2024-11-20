@@ -6,7 +6,7 @@
       Bookings / Requests
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li><a class="dropdown-item" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse" >Bookings</a></li>
-        <li><a class="dropdown-item" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse" >Rquests</a></li>
+        <li><a class="dropdown-item" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse" >Requests</a></li>
       </ul>
     </button>
     <div class="collapse collapse-horizontal" id="collapse">
@@ -52,11 +52,11 @@
     </div>
   </div>
 </div>
-<div class="fixed-bottom text-center">
-  <h3><%= "Disclaimer" %></h3>
-  <p><%= "We are not reposbile if the petsitter eats your pet. They'eating the dogs!" %></p>
-</div>
-<!--        <ul class="list-group list-group-horizontal-sm">
+<div class="relative-bottom text-center">
+  <h3><strong><%= "Disclaimer" %></h3>
+    <p><%= "We are not reposbile if the petsitter eats your pet. They'eating the dogs!" %></p>
+  </div>
+  <!--        <ul class="list-group list-group-horizontal-sm">
          <% @bookings.each do |booking| %>
           <li class="list-group-item"><%= link_to booking.status, booking_path(booking) %></li>
          <% end %>
