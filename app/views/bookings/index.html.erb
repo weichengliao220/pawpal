@@ -52,10 +52,13 @@
     </div>
   </div>
 </div>
-         <% @bookings.each do |booking| %>
-          <li class="list-group-item"><%= booking.status %></li>
-         <% end %>
-        </ul>
+
+<h1>Bookings</h1>
+<ul class="list-group list-group-horizontal-sm">
+<% @bookings.each do |booking| %>
+  <li class="list-group-item"><%= booking.status %></li>
+<% end %>
+</ul>
 
 <h1>Requests</h1>
 <ul class="list-group list-group-horizontal-sm">
