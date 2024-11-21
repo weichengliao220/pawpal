@@ -58,10 +58,15 @@
                             <% if booking.status != 'declined' && booking.status != 'expired' %>
                               <%= button_to "Cancel", "#", method: :patch, class: "btn btn-sm me-2", data: { confirm: "Are you sure you want to cancel this booking?" } %>
                             <% end %>
-                            <% if booking.status == 'expired' and !booking.rated? %>
+                            <% if booking.status == 'expired' && !booking.rated? %>
                               <button type="button" class="btn btn-sm btn-success me-2" data-bs-toggle="modal" data-bs-target="#myModal-<%= booking.id %>">
                                 Rate
                               </button>
+                            <% end %>
+                            <% if booking.status == 'expired' && booking.rated? %>
+                              <% booking.star_count.times do %>
+                                <i class="fas fa-star"></i>
+                              <% end %>
                             <% end %>
                           </div>
                         </td>

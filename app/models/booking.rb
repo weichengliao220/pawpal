@@ -11,4 +11,9 @@ class Booking < ApplicationRecord
       return false
     end
   end
+
+  def star_count
+    review = Review.find_by(booking_id: self.id)
+    review ? review.rating : 0
+  end
 end
