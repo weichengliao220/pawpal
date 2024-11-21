@@ -1,7 +1,7 @@
 <div class='main-div'>
 
   <div class='banner-petsitter-display'>
-    <%= image_tag @petsitter.picture_url if @petsitter.picture_url.present? %>
+    <%= cl_image_tag(@petsitter.photo.key, crop: :fill) if @petsitter.photo.attached? %>
   </div>
 
   <div class='petsitter-info'>
