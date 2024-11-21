@@ -1,0 +1,73 @@
+.home-banner {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .banner-content {
+    position: relative;
+    padding-top: 35vh;
+    color: white;
+    z-index: 1;
+
+    h1 {
+      font-size: 4.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .lead {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+  }
+}
+
+.feature-card {
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  i {
+    color: #4A90E2;
+  }
+}
+
+.testimonial-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+
+  .testimonial-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  p {
+    font-style: italic;
+    color: #666;
+  }
+}
