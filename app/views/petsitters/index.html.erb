@@ -28,7 +28,11 @@
           <div class="petsitter-card">
             <div class="card-image">
               <%= link_to petsitter_path(petsitter) do %>
+              <% if petsitter.photo.attached? %>
                 <%= cl_image_tag(petsitter.photo.key, crop: :fill) %>
+               <% else %>
+               <p>You don't have an image</p>
+              <% end %>
               <% end %>
             </div>
             <div class="card-info">

@@ -29,16 +29,17 @@ class PetsittersController < ApplicationController
   def create
     @petsitter = Petsitter.new(petsitter_params)
     @petsitter.user = current_user
+
     if @petsitter.save
-      redirect_to petsitter_path(@petsitter)
+      redirect_to petsitter_path(@petsitter), notice: 'Successfully became a petsitter!'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   private
 
   def petsitter_params
-    params.require(:petsitter).permit(:user_id, :bio, :price, :picture_url, :address, :photo)
+    params.require(:petsitter).permit(:user_id, :bio, :price, :picture_url, :address, :photo, acceptable_pets: [])
   end
 end

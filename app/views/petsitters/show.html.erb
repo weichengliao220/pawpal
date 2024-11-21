@@ -14,8 +14,13 @@
     <%= @petsitter.bio %>
   </div>
 
+<% if @petsitter.user.id != current_user.id %>
   <div class='create-booking-form'>
     <%= render 'form_create_booking', user: @user, petsitter: @petsitter, booking: @booking %>
   </div>
-
+<% else %>
+  <div class='create-booking-form'>
+    <p>You can't book yourself</p>
+  </div>
+<% end %>
 </div>

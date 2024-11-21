@@ -1,12 +1,29 @@
 <%= simple_form_for @petsitter do |f| %>
 
-  <% f.input :user_id, as: :hidden, input_html: { value: @user }%>
+  <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
 
-  <%= f.input :price %>
-  <%= f.input :bio %>
-  <%= f.input :picture_url %>
-  <%= f.input :acceptable_pets, collection: ['dog', 'cat', 'bird'], prompt: 'Select a pet' %>
+  <div class="form-inputs">
+    <%= f.input :price,
+                wrapper_html: { class: 'mb-3' },
+                input_html: { class: 'form-control' } %>
 
-  <%= f.submit "Add Petsitter", class: "btn btn-primary" %>
+    <%= f.input :bio,
+                wrapper_html: { class: 'mb-3' },
+                input_html: { class: 'form-control', rows: 4 } %>
+
+    <%= f.input :photo,
+                wrapper_html: { class: 'mb-3' },
+                input_html: { class: 'form-control' } %>
+
+    <%= f.input :acceptable_pets,
+                collection: ['dog', 'cat', 'bird', 'fish'],
+                prompt: 'Select a pet',
+                wrapper_html: { class: 'mb-4' },
+                input_html: { class: 'form-select', multiple: true } %>
+  </div>
+
+  <div class="form-actions text-center">
+    <%= f.submit "Become a Petsitter", class: "btn btn-primary w-100" %>
+  </div>
 
 <% end %>
