@@ -1,7 +1,18 @@
 class PetsittersController < ApplicationController
   def index
-    @petsitters = Petsitter.all
     @breeds = ["dog", "cat", "bird", "fish"]
+    @locations = ["shinjuku", "shibuya", "shinagawa", "meguro", "roppongi"]
+    @petsitters = Petsitter.all
+
+    if params[:breed].present?
+      @petsitters = @petsitters.select { |petsitter| petsitter.acceptable_pets.include?(params[:breed]) }
+    end
+
+    if params[:location].present?
+      @petsitters = @petsitters.select { |petsitter| petsitter.address.include?(params[:location]) }
+
+      # @petsitters = @petsitters.select { |petsitter| petsitter.address.include?(params[:location]) }
+    end
   end
 
   def show
