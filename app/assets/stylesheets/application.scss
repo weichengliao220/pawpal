@@ -20,3 +20,35 @@
   transform: scale(1.1);
   transition: transform 0.2s ease;
 }
+
+.stars-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.stars {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.star-label {
+  cursor: pointer;
+  color: #ddd;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.star-label:hover,
+.star-label:hover ~ .star-label {
+  color: #ffc107;
+  transform: scale(1.1);
+}
+
+.rating-input:checked + .star-label,
+.rating-input:checked + .star-label ~ .star-label {
+  color: #ffc107;
+}
+
+.rating-input:checked + .star-label {
+  text-shadow: 0 0 2px #966800;
+}

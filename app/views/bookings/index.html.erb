@@ -29,7 +29,7 @@
                       <th>Status</th>
                       <th>Start Date</th>
                       <th>End Date</th>
-                      <th>Actions/My rating</th>
+                      <th>Actions/Rating</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -61,9 +61,14 @@
                               </button>
                             <% end %>
                             <% if booking.status == 'expired' && booking.rated? %>
-                              <% booking.star_count.times do %>
-                                <i class="fas fa-star"></i>
-                              <% end %>
+                              <div class="d-flex align-items-center">
+                                <% booking.star_count.times do %>
+                                  <i class="fas fa-star text-warning me-1"></i>
+                                <% end %>
+                                <% (5 - booking.star_count).times do %>
+                                  <i class="far fa-star text-warning me-1"></i>
+                                <% end %>
+                              </div>
                             <% end %>
                           </div>
                         </td>
@@ -151,19 +156,20 @@
         </div>
         <div class="modal-body">
           <%= simple_form_for [booking, @review] do |f| %>
-            <div class="rating-stars">
-              <%= f.label :rating, "Rating", class: "form-label" %>
+            <div class="stars-container mb-3">
               <div class="stars">
                 <% (1..5).each do |star| %>
-                  <%= f.radio_button :rating, star, id: "rating_#{star}_#{booking.id}", class: "rating-input" %>
-                  <label for="rating_<%= star %>_<%= booking.id %>" class="star">&#9733;</label>
+                  <%= f.radio_button :rating, star, id: "rating_#{star}_#{booking.id}", class: "rating-input d-none" %>
+                  <label for="rating_<%= star %>_<%= booking.id %>" class="star-label">
+                    <i class="fas fa-star fs-3 me-1"></i>
+                  </label>
                 <% end %>
               </div>
-              <%= f.input :booking_id, as: :hidden, input_html: { value: booking.id } %>
-              <%= f.input :petsitter_id, as: :hidden, input_html: { value: booking.petsitter_id } %>
-              <%= f.input :comment, as: :text, label: 'Your Comment' %>
-              <%= f.submit 'Submit Review', class: "btn btn-primary" %>
             </div>
+            <%= f.input :booking_id, as: :hidden, input_html: { value: booking.id } %>
+            <%= f.input :petsitter_id, as: :hidden, input_html: { value: booking.petsitter_id } %>
+            <%= f.input :comment, as: :text, label: 'Your Comment' %>
+            <%= f.submit 'Submit Review', class: "btn btn-primary" %>
           <% end %>
         </div>
       </div>
