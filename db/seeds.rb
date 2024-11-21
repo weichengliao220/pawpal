@@ -38,6 +38,33 @@ end
 
 puts "Creating users and petsitters..."
 
+1.times do |i|
+  user = User.create!(
+    email: 'test@gmail.com',
+    password: 'testtest',
+    username: 'test_user',
+    pets: PETS.keys.sample(rand(1..3)).join(", "),
+    address: Faker::Address.full_address,
+    avatar: Faker::Avatar.image
+  )
+
+  # Make some users petsitters (70% chance)
+
+  begin
+    file = URI.open(random_pet_image)
+    petsitter = Petsitter.create!(
+      user: user,
+      price: rand(20..100) * 100,
+      bio: Faker::Lorem.paragraph(sentence_count: 3),
+      acceptable_pets: PETS.keys.sample(rand(1..4)).join(", ")
+    )
+    petsitter.photo.attach(io: file, filename: "petsitter_#{i}.jpg", content_type: "image/jpeg")
+  rescue OpenURI::HTTPError => e
+    puts "Skipping image attachment for petsitter #{i} due to error: #{e.message}"
+    next
+  end
+end
+
 # Create 20 users, some of which will be petsitters
 20.times do |i|
   user = User.create!(

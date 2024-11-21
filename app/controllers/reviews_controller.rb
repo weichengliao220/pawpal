@@ -6,13 +6,16 @@ class ReviewsController < ApplicationController
 
   def create
     @booking = Booking.find(params[:booking_id])
-    @petsitter = Petsitter.find(params[:petsitter_id])
     @review = Review.new(review_params)
-    @review.petsitter = @petsitter
-    @user = current_user
-    @review.user = @user
-    @review.save
-    redirect_to bookings_path
+    @review.booking = @booking
+    @review.petsitter = @booking.petsitter
+    @review.user = current_user
+
+    if @review.save
+      redirect_to bookings_path, notice: 'Review submitted successfully!'
+    else
+      redirect_to bookings_path, alert: 'Error creating review.'
+    end
   end
 
   def update
