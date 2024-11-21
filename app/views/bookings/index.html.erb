@@ -147,14 +147,22 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= simple_form_for [@booking, @review] do |f| %>
-          <%= f.input :rating %>
-          <%= f.input :comment %>
-        <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <%= simple_form_for [@booking, @review] do |f| %>
+       <div class="rating-stars">
+    <%= f.label :rating, "Rating", class: "form-label" %>
+        <div class="stars">
+      <% (1..5).each do |star| %>
+        <%= f.radio_button :rating, star, id: "rating_#{star}", class: "rating-input" %>
+        <label for="rating_<%= star %>" class="star">&#9733;</label>
+      <% end %>
+    </div>
+    <%= f.input :petsitter_id, input_html: { value: @booking.petsitter, disabled: true } %>
+    <%= f.input :comment, as: :text, label: 'Your Comment' %>
+
+    <%= f.submit 'Submit Review', class: "btn btn-primary" %>
+        </div>
+       <% end %>
+
       </div>
     </div>
   </div>

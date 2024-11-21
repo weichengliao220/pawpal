@@ -17,10 +17,6 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
-  def new
-    @booking = Booking.new
-  end
-
   def create
     @petsitter = Petsitter.find(params[:petsitter_id])
     @booking = Booking.new(booking_params)

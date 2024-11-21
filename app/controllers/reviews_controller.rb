@@ -1,12 +1,7 @@
 class ReviewsController < ApplicationController
   def index
     @given_reviews = Review.where(user_id: current_user)
-    petsitter_ids = Review.where(user_id: current_user).pluck(:id)
-    @received_reviews = Review.where(petsitter_id: petsitter_ids)
-  end
-
-  def new
-    @review = Review.new
+    @received_reviews = Review.where(petsitter_id: Petsitter.where(user_id: current_user))
   end
 
   def create
@@ -17,7 +12,7 @@ class ReviewsController < ApplicationController
     @user = current_user
     @review.user = @user
     @review.save
-    redirect_to reviews(@user)
+    redirect_to bookings_path
   end
 
   def update
@@ -28,6 +23,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:user_id, :petsitter_id, :rating, :comment)
+    params.require(:review).permit(:booking_id, :user_id, :petsitter_id, :rating, :comment)
   end
 end
