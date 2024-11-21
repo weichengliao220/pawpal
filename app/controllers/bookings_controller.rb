@@ -10,6 +10,7 @@ class BookingsController < ApplicationController
     @bookings = Booking.where(user_id: current_user)
     petsitter_ids = Petsitter.where(user_id: current_user).pluck(:id)
     @requests = Booking.where(petsitter_id: petsitter_ids)
+    @review = Review.new
   end
 
   def show
