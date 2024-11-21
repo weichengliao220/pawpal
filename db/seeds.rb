@@ -56,7 +56,8 @@ pictures_url = [
     user: user,
     price: rand(2..6) * 500,
     bio: Faker::Lorem.paragraph,
-    # address: %w[shinjuku shibuya meguro shinagawa roppongi].sample,
+    rating: Petsitter::VALID_RATINGS.sample.to_f,
+    address: %w[shinjuku shibuya meguro shinagawa roppongi].sample,
     acceptable_pets: %w[dog cat bird fish].sample(rand(1..4)).join(", ")
   )
 

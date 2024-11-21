@@ -29,9 +29,12 @@
               <% end %>
             </div>
             <div class="card-info">
-              <div class="username">
+              <div class="username d-flex justify-content-between align-items-center">
                 <i class="fa-solid fa-user me-2"></i>
-                <%= petsitter.user.username %>
+                  <%= petsitter.user.username %>
+                <span>
+                  <%= petsitter.rating %>
+                </span>
               </div>
             </div>
           </div>
