@@ -1,7 +1,11 @@
 class PetsittersController < ApplicationController
   def index
-    @petsitters = Petsitter.all
     @breeds = ["dog", "cat", "bird", "fish"]
+    if params[:breed].present?
+      @petsitters = Petsitter.joins(:breeds).where(breeds: { name: params[:breed] }).distinct
+    else
+      @petsitters = Petsitter.all
+    end
   end
 
   def show
