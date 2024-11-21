@@ -87,7 +87,7 @@ end
         price: rand(20..100) * 100,
         bio: Faker::Lorem.paragraph(sentence_count: 3),
         acceptable_pets: PETS.keys.sample(rand(1..4)).join(", "),
-        address: ADDRESSES.keys.sample
+        address: ADDRESSES.sample
       )
       petsitter.photo.attach(io: file, filename: "petsitter_#{i}.jpg", content_type: "image/jpeg")
     rescue OpenURI::HTTPError => e
