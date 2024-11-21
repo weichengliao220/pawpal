@@ -18,7 +18,12 @@ Petsitter.destroy_all
 User.destroy_all
 
 # Array of pet types and their breeds
-
+PETS = {
+  "dog" => ["Labrador", "German Shepherd", "Golden Retriever", "Bulldog", "Poodle"],
+  "cat" => ["Persian", "Siamese", "Maine Coon", "British Shorthair", "Ragdoll"],
+  "bird" => ["Parrot", "Canary", "Cockatiel", "Budgie", "Finch"],
+  "fish" => ["Goldfish", "Betta", "Guppy", "Tetra", "Angel Fish"]
+}
 
 # Function to get random pet-related image URL from Unsplash
 def random_pet_image
