@@ -75,13 +75,13 @@ users = User.all
 
 # Create bookings and reviews
 petsitters.each do |petsitter|
-  # Create 3-5 bookings for each petsitter
-  rand(3..5).times do
+  # Create 8-12 bookings for each petsitter
+  rand(8..12).times do
     # Select a random user who isn't the petsitter
     booking_user = users.reject { |u| u == petsitter.user }.sample
 
-    # Create a booking
-    start_date = Faker::Date.between(from: 2.months.ago, to: 2.months.from_now)
+    # Create a booking with more past dates to ensure more reviews
+    start_date = Faker::Date.between(from: 6.months.ago, to: 2.months.from_now)
     booking = Booking.create!(
       user: booking_user,
       petsitter: petsitter,
@@ -91,15 +91,26 @@ petsitters.each do |petsitter|
       location: [true, false].sample
     )
 
-    # Add a review for completed bookings (50% chance)
-    if booking.status == 'accepted' && booking.end_date < Date.today && rand < 0.5
+    # Increase chance of reviews (90% chance) and include some lower ratings
+    if booking.status == 'accepted' && booking.end_date < Date.today && rand < 0.9
       Review.create!(
         user: booking_user,
         petsitter: petsitter,
-        rating: rand(3..5),
+        rating: rand(1..5),
         comment: Faker::Lorem.paragraph(sentence_count: 2)
       )
     end
+  end
+
+  # Add some additional direct reviews (2-4 more per petsitter)
+  rand(2..4).times do
+    review_user = users.reject { |u| u == petsitter.user }.sample
+    Review.create!(
+      user: review_user,
+      petsitter: petsitter,
+      rating: rand(1..5),
+      comment: Faker::Lorem.paragraph(sentence_count: 2)
+    )
   end
 end
 
