@@ -1,6 +1,7 @@
 class PetsittersController < ApplicationController
   def index
     @breeds = ["dog", "cat", "bird", "fish"]
+    @locations = ["shinjuku", "shibuya", "shinagawa", "meguro", "roppongi"]
     @petsitters = Petsitter.all
 
     if params[:breed].present?

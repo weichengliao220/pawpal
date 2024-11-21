@@ -25,6 +25,7 @@ PETS = {
   "fish" => ["Goldfish", "Betta", "Guppy", "Tetra", "Angel Fish"]
 }
 
+
 # Function to get random pet-related image URL from Unsplash
 def random_pet_image
   [
