@@ -1,0 +1,72 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mb-4">My Reviews</h2>
+
+      <!-- Reviews Given -->
+      <div class="mb-5">
+        <h3>Reviews I've Given</h3>
+        <div class="row">
+          <% @given_reviews.each do |review| %>
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="card-title mb-0"><%= review.petsitter.user.username %></h5>
+                    <small class="text-muted"><%= review.created_at.strftime("%B %d, %Y") %></small>
+                  </div>
+                  <div class="mb-2">
+                    <% review.rating.times do %>
+                      <i class="fas fa-star text-warning"></i>
+                    <% end %>
+                    <% (5 - review.rating).times do %>
+                      <i class="far fa-star text-warning"></i>
+                    <% end %>
+                  </div>
+                  <p class="card-text"><%= review.comment %></p>
+                  <small class="text-muted">Booking dates: <%= review.booking.start_date.strftime("%B %d") %> - <%= review.booking.end_date.strftime("%B %d, %Y") %></small>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <% if current_user.petsitter.present? %>
+        <div class="mb-5">
+          <h3>Reviews I've Received</h3>
+          <div class="row">
+            <% @received_reviews.each do |review| %>
+              <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <h5 class="card-title mb-0">From: <%= review.user.username %></h5>
+                      <small class="text-muted"><%= review.created_at.strftime("%B %d, %Y") %></small>
+                    </div>
+                    <div class="mb-2">
+                      <% review.rating.times do %>
+                        <i class="fas fa-star text-warning"></i>
+                      <% end %>
+                      <% (5 - review.rating).times do %>
+                        <i class="far fa-star text-warning"></i>
+                      <% end %>
+                    </div>
+                    <p class="card-text"><%= review.comment %></p>
+                    <small class="text-muted">Booking dates: <%= review.booking.start_date.strftime("%B %d") %> - <%= review.booking.end_date.strftime("%B %d, %Y") %></small>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @given_reviews.empty? && (!current_user.petsitter.present? || @received_reviews.empty?) %>
+        <div class="text-center py-5">
+          <p class="text-muted">No reviews yet!</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
