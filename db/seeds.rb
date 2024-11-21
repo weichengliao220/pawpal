@@ -91,26 +91,16 @@ petsitters.each do |petsitter|
       location: [true, false].sample
     )
 
-    # Increase chance of reviews (90% chance) and include some lower ratings
+    # Create reviews only for completed bookings
     if booking.status == 'accepted' && booking.end_date < Date.today && rand < 0.9
       Review.create!(
         user: booking_user,
         petsitter: petsitter,
+        booking: booking,
         rating: rand(1..5),
         comment: Faker::Lorem.paragraph(sentence_count: 2)
       )
     end
-  end
-
-  # Add some additional direct reviews (2-4 more per petsitter)
-  rand(2..4).times do
-    review_user = users.reject { |u| u == petsitter.user }.sample
-    Review.create!(
-      user: review_user,
-      petsitter: petsitter,
-      rating: rand(1..5),
-      comment: Faker::Lorem.paragraph(sentence_count: 2)
-    )
   end
 end
 
