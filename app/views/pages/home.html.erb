@@ -1,43 +1,41 @@
 <%# <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p> %>
 <div>
-  <div class="container">
-    <div class="banner-content text-center">
-      <h1>PawPal</h1>
-      <p class="lead mb-4">"Because pets are family."</p>
-      <div class="d-flex justify-content-center gap-3">
+  <div class="banner-content d-flex justify-content-center align-items-center text-center">
+    <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/dxkjh8nhh/image/upload/v1731991259/OVRS-connect-shutterstock_2132259743_qq4bad.jpg);">
+      <p class="lead my-5">"Because pets are family."</p>
+      <div class="d-flex justify-content-center gap-3 my-5">
         <%= link_to "Find a Petsitter", petsitters_path, class: "btn btn-primary mx-2 my-5" %>
         <%= link_to "Become a Petsitter", new_petsitter_path, class: "btn btn-primary mx-2 my-5" %>
       </div>
     </div>
   </div>
-</div>
-<div class="container my-5">
-  <h2 class="text-center mb-5">Why Choose PawPal?</h2>
-  <div class="row g-4">
-    <div class="col-md-4">
-      <div class="feature-card text-center p-4">
-        <i class="fas fa-shield-alt mb-3"></i>
-        <h3>Trusted Sitters</h3>
-        <p>All our petsitters are verified and reviewed by pet owners like you.</p>
+  <div class="container my-5">
+    <h2 class="text-center mb-3">Why Choose PawPal?</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="feature-card text-center p-4">
+          <i class="fas fa-shield-alt mb-3"></i>
+          <h3>Trusted Sitters</h3>
+          <p>All our petsitters are verified and reviewed by pet owners like you.</p>
+        </div>
       </div>
-    </div>
-    <div class="col-md-4">
-      <div class="feature-card text-center p-4">
-        <i class="fas fa-clock mb-3"></i>
-        <h3>Flexible Booking</h3>
-        <p>Book a trusted sitter whenever you need, even last minute.</p>
+      <div class="col-md-4">
+        <div class="feature-card text-center p-4">
+          <i class="fas fa-clock mb-3"></i>
+          <h3>Flexible Booking</h3>
+          <p>Book a trusted sitter whenever you need, even last minute.</p>
+        </div>
       </div>
-    </div>
-    <div class="col-md-4">
-      <div class="feature-card text-center p-4">
-        <i class="fas fa-heart mb-3"></i>
-        <h3>Peace of Mind</h3>
-        <p>Your pets get the love they deserve while you're away.</p>
+      <div class="col-md-4">
+        <div class="feature-card text-center p-4">
+          <i class="fas fa-heart mb-3"></i>
+          <h3>Peace of Mind</h3>
+          <p>Your pets get the love they deserve while you're away.</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 </div>
 </div>
