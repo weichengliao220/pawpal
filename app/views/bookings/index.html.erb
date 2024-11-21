@@ -45,6 +45,8 @@
                             <span class="badge bg-success">Accepted</span>
                           <% when 'pending' %>
                             <span class="badge bg-warning text-dark">Pending</span>
+                          <% when 'expired' %>
+                            <span class="badge bg-warning text-dark">Past</span>
                           <% when 'declined' %>
                             <span class="badge bg-danger">Declined</span>
                           <% end %>
@@ -53,8 +55,11 @@
                         <td><%= booking.end_date.strftime("%B %d, %Y") %></td>
                         <td>
                           <div class="btn-group" role="group">
-                            <% if booking.status != 'declined' %>
-                              <%= button_to "Cancel", "#", method: :patch, class: "btn btn-sm btn-outline-danger", data: { confirm: "Are you sure you want to cancel this booking?" } %>
+                            <% if booking.status != 'declined' && booking.status != 'expired' %>
+                              <%= button_to "Cancel", "#", method: :patch, class: "btn btn-sm me-2", data: { confirm: "Are you sure you want to cancel this booking?" } %>
+                            <% end %>
+                              <% if booking.status == 'expired' and !booking.rated? %>
+                              <%= button_to "Rate", "#", method: :patch, class: "btn btn-sm btn-success me-2", data: { confirm: "Are you sure you want to cancel this booking?" } %>
                             <% end %>
                           </div>
                         </td>
@@ -98,6 +103,8 @@
                             <span class="badge bg-success">Accepted</span>
                           <% when 'pending' %>
                             <span class="badge bg-warning text-dark">Pending</span>
+                          <% when 'expired' %>
+                              <span class="badge bg-warning text-dark">Past</span>
                           <% when 'declined' %>
                             <span class="badge bg-danger">Declined</span>
                           <% end %>

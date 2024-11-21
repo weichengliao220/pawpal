@@ -1,5 +1,12 @@
 class BookingsController < ApplicationController
   def index
+    all_bookings = Booking.all
+    all_bookings.each do |booking|
+      if booking.end_date < Date.today
+        booking.status = "expired"
+        booking.save
+      end
+    end
     @bookings = Booking.where(user_id: current_user)
     petsitter_ids = Petsitter.where(user_id: current_user).pluck(:id)
     @requests = Booking.where(petsitter_id: petsitter_ids)
@@ -29,6 +36,7 @@ class BookingsController < ApplicationController
     @booking.status = "declined"
     redirect_to bookings_path(@booking)
   end
+
   private
 
   def booking_params
