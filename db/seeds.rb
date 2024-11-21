@@ -38,10 +38,10 @@ end
 
 puts "Creating users and petsitters..."
 
-1.time do |i|
+1.times do |i|
   user = User.create!(
     email: 'test@gmail.com',
-    password: 'test',
+    password: 'testtest',
     username: 'test_user',
     pets: PETS.keys.sample(rand(1..3)).join(", "),
     address: Faker::Address.full_address,
