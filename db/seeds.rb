@@ -25,6 +25,7 @@ PETS = {
   "fish" => ["Goldfish", "Betta", "Guppy", "Tetra", "Angel Fish"]
 }
 
+ADDRESSES = ["shinjuku", "shibuya", "shinagawa", "meguro", "roppongi"]
 
 # Function to get random pet-related image URL from Unsplash
 def random_pet_image
@@ -85,7 +86,8 @@ end
         user: user,
         price: rand(20..100) * 100,
         bio: Faker::Lorem.paragraph(sentence_count: 3),
-        acceptable_pets: PETS.keys.sample(rand(1..4)).join(", ")
+        acceptable_pets: PETS.keys.sample(rand(1..4)).join(", "),
+        address: ADDRESSES.keys.sample
       )
       petsitter.photo.attach(io: file, filename: "petsitter_#{i}.jpg", content_type: "image/jpeg")
     rescue OpenURI::HTTPError => e

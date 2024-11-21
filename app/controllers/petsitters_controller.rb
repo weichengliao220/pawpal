@@ -9,7 +9,9 @@ class PetsittersController < ApplicationController
     end
 
     if params[:location].present?
-      @petsitters = @petsitters.select { |petsitter| petsitter.address.include?(params[:location]) }
+      @petsitters = @petsitters.select { |petsitter| petsitter.address?(params[:location]) }
+
+      # @petsitters = @petsitters.select { |petsitter| petsitter.address.include?(params[:location]) }
     end
   end
 
