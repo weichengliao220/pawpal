@@ -15,7 +15,12 @@ Rails.application.routes.draw do
 
   resources :bookings do
     resources :reviews, only: [:create]
+    member do
+      patch :cancel
+    end
   end
 
   resources :reviews, only: [:index, :new, :update]
+
+  get 'users/:id/phone_number', to: 'users#phone_number', as: :user_phone_number
 end
