@@ -126,7 +126,7 @@
                               <%= button_to "Accept", "#", method: :patch, class: "btn btn-sm btn-success me-2" %>
                               <%= button_to "Decline", "#", method: :patch, class: "btn btn-sm btn-danger" %>
                             <% else %>
-                              <%= link_to "View client details", "#", class: "btn btn-sm btn-outline-primary", onclick: "showPhoneNumber('<%= user.phone_number %>', this)" %>
+                              <%= link_to "View Phone Number", phone_number_user_path(current_user), class: "btn btn-primary" %>
                             <% end %>
                           </div>
                         </td>

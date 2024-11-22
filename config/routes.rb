@@ -22,5 +22,9 @@ Rails.application.routes.draw do
 
   resources :reviews, only: [:index, :new, :update]
 
-  get 'users/:id/phone_number', to: 'users#phone_number', as: :user_phone_number
+  resources :users, only: [:show] do
+    member do
+      get :phone_number
+    end
+  end
 end

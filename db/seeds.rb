@@ -39,7 +39,8 @@ puts "Creating users and petsitters..."
     username: 'test_user',
     pets: PETS.keys.sample(rand(1..3)).join(", "),
     address: Faker::Address.full_address,
-    avatar: Faker::Avatar.image
+    avatar: Faker::Avatar.image,
+    phone_number: "0785425253"
   )
 
   # Make some users petsitters (70% chance)
@@ -67,7 +68,8 @@ end
     username: Faker::Internet.unique.username,
     pets: PETS.keys.sample(rand(1..3)).join(", "),
     address: Faker::Address.full_address,
-    avatar: Faker::Avatar.image
+    avatar: Faker::Avatar.image,
+    phone_number: "0785425253"
   )
 
   # Make some users petsitters (70% chance)
