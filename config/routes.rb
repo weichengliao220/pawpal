@@ -14,10 +14,12 @@ Rails.application.routes.draw do
   end
 
   resources :bookings do
-    resources :reviews, only: [:create]
     member do
+      patch :accept
+      patch :decline
       patch :cancel
     end
+    resources :reviews, only: [:create]
   end
 
   resources :reviews, only: [:index, :new, :update]

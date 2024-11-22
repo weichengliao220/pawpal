@@ -53,8 +53,7 @@
                         <td>
                           <div class="btn-group" role="group">
                             <% if booking.status != 'declined' && booking.status != 'expired' %>
-                              <%= button_to "Cancel", cancel_booking_path(booking), method: :patch, class: "btn btn-sm me-2", data: { confirm: "Are you sure you want to cancel this booking?" } %>
-                            <% end %>
+                              <%= button_to "Cancel", cancel_booking_path(booking), method: :patch, class: "btn btn-sm me-2", data: { confirm: "Are you sure you want to cancel this booking?" } %>                            <% end %>
                             <% if booking.status == 'expired' && !booking.rated? %>
                               <button type="button" class="btn btn-sm btn-success me-2" data-bs-toggle="modal" data-bs-target="#myModal-<%= booking.id %>">
                                 Rate
@@ -126,7 +125,7 @@
                               <%= button_to "Accept", "#", method: :patch, class: "btn btn-sm btn-success me-2" %>
                               <%= button_to "Decline", "#", method: :patch, class: "btn btn-sm btn-danger" %>
                             <% else %>
-                              <%= link_to "View Phone Number", phone_number_user_path(current_user), class: "btn btn-primary" %>
+                              <%= link_to "View client details", "#", class: "btn btn-sm btn-outline-primary" %>
                             <% end %>
                           </div>
                         </td>
