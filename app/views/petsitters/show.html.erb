@@ -1,26 +1,42 @@
-<div class='main-div'>
+<div class='container py-4'>
+  <div class='row'>
+    <div class='col-lg-8'>
+      <div class='card shadow-sm'>
+        <div class='banner-petsitter-display'>
+          <% if @petsitter.photo.attached? %>
+            <%= cl_image_tag(@petsitter.photo.key, crop: :fill, class: 'img-fluid', style: 'height: 400px; width: 100%; object-fit: cover;') %>
+          <% end %>
+        </div>
 
-  <div class='banner-petsitter-display'>
-    <%= cl_image_tag(@petsitter.photo.key, crop: :fill) if @petsitter.photo.attached? %>
-  </div>
+        <div class='card-body p-4'>
+          <div class='d-flex justify-content-between align-items-center mb-3'>
+            <h2 class='mb-0'><%= @petsitter.user.username %></h2>
+            <h3 class='text-primary mb-0'><%= @petsitter.price %>¥ / day</h3>
+          </div>
+          <p class='text-muted mb-4'><%= @petsitter.bio %></p>
 
-  <div class='petsitter-info'>
-    <h2>
-      <%=  @petsitter.user.username %>
-    </h2>
-    <h3>
-      <%= @petsitter.price %>¥ / day
-    </h3>
-    <%= @petsitter.bio %>
-  </div>
+          <div class='d-flex gap-2'>
+            <% @petsitter.acceptable_pets.each do |pet| %>
+              <span class='badge bg-primary'><%= pet %></span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<% if @petsitter.user.id != current_user.id %>
-  <div class='create-booking-form'>
-    <%= render 'form_create_booking', user: @user, petsitter: @petsitter, booking: @booking %>
+    <div class='col-lg-4'>
+      <div class='card shadow-sm'>
+        <div class='card-body p-4'>
+          <% if @petsitter.user.id != current_user.id %>
+            <h4 class='mb-4'>Book this petsitter</h4>
+            <%= render 'form_create_booking', user: @user, petsitter: @petsitter, booking: @booking %>
+          <% else %>
+            <div class='alert alert-info'>
+              <p class='mb-0'>You can't book yourself</p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-<% else %>
-  <div class='create-booking-form'>
-    <p>You can't book yourself</p>
-  </div>
-<% end %>
 </div>
