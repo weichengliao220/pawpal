@@ -147,29 +147,68 @@
 
 <% @bookings.each do |booking| %>
   <div class="modal fade" id="myModal-<%= booking.id %>" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="myModalLabel">Rate your petsitter</h5>
+        <div class="modal-header border-0">
+          <h5 class="modal-title" id="myModalLabel">Rate your experience with <%= booking.petsitter.user.username %></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+
+        <div class="modal-body px-4 pb-4">
           <%= simple_form_for [booking, @review] do |f| %>
-            <div class="stars-container mb-3">
-              <div class="stars">
-                <% (1..5).each do |star| %>
+            <div class="stars-container text-center mb-4">
+              <div class="stars d-flex justify-content-center">
+                <% (1..5).reverse_each do |star| %>
                   <%= f.radio_button :rating, star, id: "rating_#{star}_#{booking.id}", class: "rating-input d-none" %>
                   <label for="rating_<%= star %>_<%= booking.id %>" class="star-label">
-                    <i class="fas fa-star fs-3 me-1"></i>
+                    <i class="fas fa-star fs-2 me-2"></i>
                   </label>
                 <% end %>
               </div>
             </div>
+
             <%= f.input :booking_id, as: :hidden, input_html: { value: booking.id } %>
             <%= f.input :petsitter_id, as: :hidden, input_html: { value: booking.petsitter_id } %>
-            <%= f.input :comment, as: :text, label: 'Your Comment' %>
-            <%= f.submit 'Submit Review', class: "btn btn-primary" %>
+
+            <%= f.input :comment,
+                        as: :text,
+                        label: 'Share your experience',
+                        placeholder: 'Tell us about your experience with this petsitter...',
+                        input_html: { rows: 4, class: 'form-control mb-4' } %>
+
+            <div class="text-end">
+              <button type="button" class="btn btn-outline-secondary me-2" data-bs-dismiss="modal">Cancel</button>
+              <%= f.submit 'Submit Review', class: "btn btn-primary" %>
+            </div>
           <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% @bookings.each do |booking| %>
+  <div class="modal fade" id="myModal-<%= booking.id %>" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title" id="myModalLabel">Rate your experience with us</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body px-4 pb-4">
+    <%= simple_form_for [@booking, @review] do |f| %>
+      <%= f.input :comment, input_html: { class: 'form-control', placeholder: 'Write your review here...' } %>
+      <div class="star-rating mb-3">
+        <% 5.times do |i| %>
+          <input type="radio" name="review[rating]" value="<%= i + 1 %>" <%= "checked" if i == 2 %> />
+        <% end %>
+      </div>
+      <%= f.submit "Submit review", class: "btn btn-primary btn-block" %>
+    <% end %>
+  </div>
+  </div>
+ </div>
         </div>
       </div>
     </div>
