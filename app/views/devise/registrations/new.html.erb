@@ -12,7 +12,20 @@
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :password_confirmation,
                 required: true,
+                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } %>
+    <%= f.input :username,
+                required: true,
+                input_html: { autocomplete: "username" } %>
+    <%= f.input :pets,
+                required: true,
+                input_html: { autocomplete: "pets" } %>
+    <%= f.input :address,
+                required: true,
+                input_html: { autocomplete: "address" } %>
+    <%= f.input :photo,
+                required: true, required: true,
+                input_html: { autocomplete: "avatar" } %>
   </div>
   <div class="form-actions">
     <%= f.button :submit, "Sign up", class: "mx-4" %>
