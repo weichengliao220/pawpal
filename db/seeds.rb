@@ -54,8 +54,9 @@ puts "Creating users and petsitters..."
     password: 'testtest',
     username: 'test_user',
     pets: PETS.keys.sample(rand(1..3)).join(", "),
-    address: "shinjuku",
-    avatar: Faker::Avatar.image
+    address: Faker::Address.full_address,
+    avatar: Faker::Avatar.image,
+    phone_number: "0785425253"
   )
 
   # Make some users petsitters (70% chance)
