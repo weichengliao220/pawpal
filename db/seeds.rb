@@ -3,9 +3,13 @@ require 'open-uri'
 
 puts "Cleaning database..."
 Review.destroy_all
+puts "Reviews destroyed"
 Booking.destroy_all
+puts "Bookings destroyed"
 Petsitter.destroy_all
+puts "Petsitters destroyed"
 User.destroy_all
+puts "Users destroyed"
 
 # Array of pet types and their breeds
 PETS = {
@@ -84,8 +88,9 @@ end
     password: 'password123',
     username: Faker::Internet.unique.username,
     pets: PETS.keys.sample(rand(1..3)).join(", "),
-    address: ADDRESSES.sample,
-    avatar: Faker::Avatar.image
+    address: Faker::Address.full_address,
+    avatar: Faker::Avatar.image,
+    phone_number: "0785425253"
   )
 
   # Make some users petsitters (70% chance)
