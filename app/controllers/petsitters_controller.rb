@@ -20,6 +20,7 @@ class PetsittersController < ApplicationController
     @bookings = Booking.where(petsitter_id: @petsitter.id)
     @booking = Booking.new
     @user = current_user
+    @reviews = Review.where(petsitter_id: @petsitter.id)
   end
 
   def new
