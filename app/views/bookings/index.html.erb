@@ -36,13 +36,13 @@
                     <% @bookings.sort_by { |b| b.status == 'accepted' ? 0 : 1 }.each do |booking| %>
                       <tr class="<%= 'bg-success bg-opacity-10' if booking.status == 'accepted' %>">
                         <td class="btn btn-sm">
-                          <%= link_to booking.petsitter.user.username, petsitter_path(booking.petsitter), class: "btn btn-sm btn-primary text-white" %></td>
+                          <%= link_to booking.petsitter.user.username, petsitter_path(booking.petsitter), class: "btn btn-sm btn-pill.badge-pill" %></td>
                         <td>
                           <% case booking.status %>
                           <% when 'accepted' %>
                             <span class="badge bg-success">Accepted</span>
                           <% when 'pending' %>
-                            <span class="badge bg-warning text-dark">Pending</span>
+                            <span class="badge bg-info text-dark">Pending</span>
                           <% when 'expired' %>
                             <span class="badge bg-warning text-dark">Past</span>
                           <% when 'declined' %>

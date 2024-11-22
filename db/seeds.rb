@@ -56,7 +56,7 @@ puts "Creating users and petsitters..."
   user = User.create!(
     email: 'petsitter@gmail.com',
     password: 'testtest',
-    username: 'test_petsitter',
+    username: 'Adam',
     pets: PETS.keys.sample(rand(1..3)).join(", "),
     address: ADDRESSES.sample,
     avatar: Faker::Avatar.image,
@@ -68,8 +68,8 @@ puts "Creating users and petsitters..."
     petsitter = Petsitter.create!(
       user: user,
       price: rand(20..100) * 100,
-      bio: Faker::Lorem.paragraph(sentence_count: 3),
-      acceptable_pets: PETS.keys.sample(rand(1..4)).join(", "),
+      bio: "Hello! I'm Adam, a professional petsitter with over 5 years of experience. I love all animals and will take great care of your pets while you're away.",
+      acceptable_pets: ["dog", "cat", "bird", "fish"].join(", "),
       # address: ADDRESSES.sample
     )
     petsitter.photo.attach(io: file, filename: "petsitter_#{i}.jpg", content_type: "image/jpeg")
