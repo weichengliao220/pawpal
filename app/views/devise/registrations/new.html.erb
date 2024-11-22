@@ -27,10 +27,12 @@
                 required: true, required: true,
                 input_html: { autocomplete: "avatar" } %>
   </div>
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up", class: "mx-4" %>
+  <div class="d-flex">
+    <div class="form-actions">
+      <%= f.button :submit, "Sign up", class: "btn btn-primary mx-5" %>
+      <div class="btn btn-alert", style="color: white;">
+        <%= render "devise/shared/links" %>
+      <% end %>
+    </div>
   </div>
-<% end %>
-<div class="mx-5">
-  <%= render "devise/shared/links" %>
 </div>

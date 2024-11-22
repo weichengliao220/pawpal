@@ -58,7 +58,7 @@ puts "Creating users and petsitters..."
     password: 'testtest',
     username: 'test_petsitter',
     pets: PETS.keys.sample(rand(1..3)).join(", "),
-    address: Faker::Address.full_address,
+    address: ADDRESSES.sample,
     avatar: Faker::Avatar.image,
     phone_number: "0785425253"
   )
@@ -98,7 +98,7 @@ end
     password: 'password123',
     username: Faker::Internet.unique.username,
     pets: PETS.keys.sample(rand(1..3)).join(", "),
-    address: Faker::Address.full_address,
+    address: ADDRESSES.sample,
     avatar: Faker::Avatar.image,
     phone_number: "0785425253"
   )

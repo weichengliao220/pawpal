@@ -1,6 +1,6 @@
 class PetsittersController < ApplicationController
   def index
-    @breeds = ["dog", "cat", "bird", "fish"]
+    @breeds = ["Dog", "Cat", "Bird", "Fish"]
     @locations = ["shinjuku", "shibuya", "shinagawa", "meguro", "roppongi"]
     @petsitters = Petsitter.all
 
@@ -20,6 +20,7 @@ class PetsittersController < ApplicationController
     @bookings = Booking.where(petsitter_id: @petsitter.id)
     @booking = Booking.new
     @user = current_user
+    @reviews = Review.where(petsitter_id: @petsitter.id)
   end
 
   def new

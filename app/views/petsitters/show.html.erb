@@ -1,28 +1,85 @@
 <div class='container py-4'>
   <div class='row'>
     <div class='col-lg-8'>
-      <div class='card shadow-sm'>
-        <div class='banner-petsitter-display'>
-          <% if @petsitter.photo.attached? %>
-            <%= cl_image_tag(@petsitter.photo.key, crop: :fill, class: 'img-fluid', style: 'height: 400px; width: 100%; object-fit: cover;') %>
-          <% end %>
-        </div>
-
-        <div class='card-body p-4'>
-          <div class='d-flex justify-content-between align-items-center mb-3'>
-            <h2 class='mb-0'><%= @petsitter.user.username %></h2>
-            <h3 class='text-primary mb-0'><%= @petsitter.price %>¥ / day</h3>
+      <div class='card shadow-sm mb-4'>
+        <div class='row g-0'>
+          <div class='col-md-5'>
+            <div class='banner-petsitter-display h-100'>
+              <% if @petsitter.photo.attached? %>
+                <%= cl_image_tag(@petsitter.photo.key,
+                    crop: :fill,
+                    class: 'img-fluid rounded-start',
+                    style: 'height: 100%; width: 100%; object-fit: cover;') %>
+              <% end %>
+            </div>
           </div>
-          <p class='text-muted mb-4'><%= @petsitter.bio %></p>
 
-          <div class='d-flex gap-2'>
-            <% @petsitter.acceptable_pets.split(",").each do |pet| %>
-              <span class='badge bg-primary'><%= pet %></span>
-            <% end %>
+          <div class='col-md-7'>
+            <div class='card-body p-4'>
+              <div class='d-flex justify-content-between align-items-center mb-3'>
+                <h2 class='mb-0'><%= @petsitter.user.username %></h2>
+                <h3 class='text-primary mb-0'><%= @petsitter.price %>¥ / day</h3>
+              </div>
+
+              <div class='d-flex gap-2 mb-3'>
+                <% @petsitter.acceptable_pets.split(",").each do |pet| %>
+                  <span class='badge bg-primary'><%= pet.strip %></span>
+                <% end %>
+              </div>
+
+              <div class='border-top pt-3'>
+                <p class='text-muted'><%= @petsitter.bio %></p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+<% if @reviews != [] %>
+      <div class='card shadow-sm'>
+        <div class='card-body p-4'>
+          <h4 class='mb-4'>Reviews</h4>
+          <% @reviews.each do |review| %>
+        <div class="review mb-3">
+          <div class="d-flex align-items-center mb-2">
+            <% review.booking.star_count.times do %>
+          <i class="fas fa-star text-warning me-1"></i>
+            <% end %>
+            <% (5 - review.booking.star_count).times do %>
+          <i class="far fa-star text-warning me-1"></i>
+            <% end %>
+          </div>
+          <p class="mb-1"><%= review.comment %></p>
+          <small class="text-muted"><%= review.created_at.strftime("%B %d, %Y") %></small>
+        </div>
+        <hr>
+          <% end %>
+        </div>
+      </div>
+        </div>
+<% else%>
+  <div class='card shadow-sm'>
+    <div class='card-body p-4'>
+      <h5 class='mb-4'>This petsitter doesn't have reviews yet</h5>
+        <% @reviews.each do |review| %>
+        <div class="review mb-3">
+        <div class="d-flex align-items-center mb-2">
+            <% review.booking.star_count.times do %>
+          <i class="fas fa-star text-warning me-1"></i>
+            <% end %>
+            <% (5 - review.booking.star_count).times do %>
+          <i class="far fa-star text-warning me-1"></i>
+            <% end %>
+          </div>
+          <p class="mb-1"><%= review.comment %></p>
+          <small class="text-muted"><%= review.created_at.strftime("%B %d, %Y") %></small>
+        </div>
+        <hr>
+          <% end %>
+        </div>
+      </div>
+        </div>
+<% end %>
 
     <div class='col-lg-4'>
       <div class='card shadow-sm'>
