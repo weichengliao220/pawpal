@@ -5,13 +5,13 @@ class PetsittersController < ApplicationController
     @petsitters = Petsitter.all
 
     if params[:breed].present?
-      @petsitters = @petsitters.select { |petsitter| petsitter.acceptable_pets.include?(params[:breed]) }
+      # @petsitters = @petsitters.select { |petsitter| petsitter.acceptable_pets.include?(params[:breed]) }
+      @petsitters = @petsitters.where('acceptable_pets ILIKE ?', "%#{params[:breed]}%")
     end
 
     if params[:location].present?
-      @petsitters = @petsitters.select { |petsitter| petsitter.address.include?(params[:location]) }
-
       # @petsitters = @petsitters.select { |petsitter| petsitter.address.include?(params[:location]) }
+      @petsitters = @petsitters.joins(:user).where('users.address ILIKE ?', "%#{params[:location]}%")
     end
   end
 
