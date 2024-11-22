@@ -16,7 +16,7 @@
           <p class='text-muted mb-4'><%= @petsitter.bio %></p>
 
           <div class='d-flex gap-2'>
-            <% @petsitter.acceptable_pets.each do |pet| %>
+            <% @petsitter.acceptable_pets.split(",").each do |pet| %>
               <span class='badge bg-primary'><%= pet %></span>
             <% end %>
           </div>
