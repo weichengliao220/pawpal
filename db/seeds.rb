@@ -56,7 +56,7 @@ puts "Creating users and petsitters..."
   user = User.create!(
     email: 'petsitter@gmail.com',
     password: 'testtest',
-    username: 'test_user',
+    username: 'test_petsitter',
     pets: PETS.keys.sample(rand(1..3)).join(", "),
     address: ADDRESSES.sample,
     avatar: Faker::Avatar.image,
