@@ -54,7 +54,7 @@ puts "Creating users and petsitters..."
 
 1.times do |i|
   user = User.create!(
-    email: 'test@gmail.com',
+    email: 'petsitter@gmail.com',
     password: 'testtest',
     username: 'test_user',
     pets: PETS.keys.sample(rand(1..3)).join(", "),
@@ -62,8 +62,6 @@ puts "Creating users and petsitters..."
     avatar: Faker::Avatar.image,
     phone_number: "0785425253"
   )
-
-  # Make some users petsitters (70% chance)
 
   begin
     file = URI.open(random_pet_image(picture_urls))
@@ -79,6 +77,18 @@ puts "Creating users and petsitters..."
     puts "Skipping image attachment for petsitter #{i} due to error: #{e.message}"
     next
   end
+end
+
+1.times do |i|
+  user_booker = User.create!(
+    email: 'booker@gmail.com',
+    password: 'testtest',
+    username: 'test_user',
+    pets: PETS.keys.sample(rand(1..3)).join(", "),
+    address: Faker::Address.full_address,
+    avatar: Faker::Avatar.image,
+    phone_number: "0785425253"
+  )
 end
 
 # Create 20 users, some of which will be petsitters
