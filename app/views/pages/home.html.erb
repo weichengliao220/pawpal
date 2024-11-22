@@ -2,7 +2,7 @@
   <div class="banner-content d-flex justify-content-center align-items-center text-center">
     <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/dxkjh8nhh/image/upload/v1731991259/OVRS-connect-shutterstock_2132259743_qq4bad.jpg);">
       <p class="lead my-">"Because pets are family."</p>
-      <div class="d-flex justify-content-center gap-3 my-5">
+      <div class="d-flex justify-content-center gap-3 my-4">
         <% if current_user.present? %>
           <% if current_user.petsitter.present? %>
             <%= link_to "Find a petsitter", petsitters_path, class: "btn btn-primary mx-2 my-5" %>
@@ -16,7 +16,7 @@
       </div>
     </div>
   </div>
-  <div class="container my-5">
+  <div class="container my-3">
     <h2 class="text-center mb-3">Why Choose PawPal?</h2>
     <div class="row g-4">
       <div class="col-md-4">
