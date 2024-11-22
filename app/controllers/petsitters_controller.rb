@@ -37,6 +37,7 @@ class PetsittersController < ApplicationController
     end
   end
 
+
   private
 
   def petsitter_params
