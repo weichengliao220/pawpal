@@ -15,34 +15,32 @@ PETS = {
   "fish" => ["Goldfish", "Betta", "Guppy", "Tetra", "Angel Fish"]
 }
 
-# Function to get random pet-related image URL from Unsplash
-  picture_urls = [
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_F1HZ7_i0eVUZD4gckYCIXt7BuF58TjN-uMG2EVnP_SieHJdxH6DIJx5idNRatyMHi4Y&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWtvZ7yA_1gb9gAPAe9mB7MhM7ZJeYtxcaCKpBhnoGTWRUaKdmu1wNWx5tQpIMGye5oU4&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJJ3IRcVBvn0JsDmnG2flZsb6KHyLJD2SbcpBCM5IrdPwwor5urud9C8UJVE2QXPEgcLw&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnDJ39DjtTneAlSvVcP-DgRIrS8-SC8Qc6YduJK_OKKA2hmxGhSDgOQnXz6y792CBKu7s&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUcxY91I_I0aOOM_VF1_ljV6Kf6aKHpkxYP9X5yDMeSVQpy2y2x_RyMmmoez4M2xiJ8l8&usqp=CAU",
-    "https://assets.petbacker.com/user-images/320/u_07c1c6aa68.66359d0f96167.jpg",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcV8BnQLHKrMeN9OYkx9zPvSneHMGSXijpX8MNjLZ4LPHof_zPjLgQQbygpJSP7X0Zbdk&usqp=CAU",
-    "https://www.akc.org/wp-content/uploads/2021/03/Dachshund-excited-to-snuggle-and-kiss-a-young-man-on-the-couch.jpeg",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvRV3oxlRKkigYj600nRoiHjZVKq3YY8_ePlWSW2XL6CZ8Gus6o577s429WasOP_v7nIc&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWt2qetvLBrATVZKOxhw9AAs2ao51qqc7-Ug&s",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxYBcIGGuJewK8jMtiNBt260aUl7-ZOMbEZGwwdIu-MxsiUiE5a0H7zs6iz9gSVcs2Tw&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSSAWReslyHpk_96rEupJcr026RtTlJu-dzW1BEKRsEEgdzk8oaXAuDrFmuamnJgg9M8A&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmLorHmpJy8G9x7G82ITuZtiI-xxmQ2irMHA&s",
-    "https://media.graphassets.com/resize=height:360,width:1280/output=format:webp/YPwwfONKR5GaADHjEIme?width=1280",
-    "https://fetchpetcare.com/wp-content/uploads/2023/12/unconditional-love.jpg",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_4rNjsE1sQ7IXfzjEUK34s_TWRqsK9pHicmIpGg0i1t2ibMJCkdDPwvgLL2wJVruRuxA&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAkQ86rCHtXYGGyX8P9xjwodbu2iiIuzgWuFnGMGEehglbrnc0_PBe3pOw50dsI9JkCGc&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSskdoV_q04COuh3-XQhHtYYY3yeCDTFyDg4r5IGRwnXAeoyosVZCAdfwTk_HiXCjEoa8Y&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8lsAvSkJrarUkyK5uKkuCslSbQ__8OYRjXMP6fcBuPL6gQVkyUsdHwLA0LeAJ0rCayn8&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpN5HLnqKfUCHLwRs3cNSGyk1wgcaY03I_iUT0wPOKEHXSTxkiaUOO5LgqfaQB6_qFSqE&usqp=CAU"
-  ]
+ADDRESSES = ["shinjuku", "shibuya", "shinagawa", "meguro", "roppongi"]
 
-  # shuffled_pictures = picture_urls.shuffle
-  # shuffled_pictures.each_with_index do |picture_url,index|
-  #   puts picture_url
-  # end
+# Function to get random pet-related image URL from Unsplash
+picture_urls = [
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_F1HZ7_i0eVUZD4gckYCIXt7BuF58TjN-uMG2EVnP_SieHJdxH6DIJx5idNRatyMHi4Y&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWtvZ7yA_1gb9gAPAe9mB7MhM7ZJeYtxcaCKpBhnoGTWRUaKdmu1wNWx5tQpIMGye5oU4&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJJ3IRcVBvn0JsDmnG2flZsb6KHyLJD2SbcpBCM5IrdPwwor5urud9C8UJVE2QXPEgcLw&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnDJ39DjtTneAlSvVcP-DgRIrS8-SC8Qc6YduJK_OKKA2hmxGhSDgOQnXz6y792CBKu7s&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUcxY91I_I0aOOM_VF1_ljV6Kf6aKHpkxYP9X5yDMeSVQpy2y2x_RyMmmoez4M2xiJ8l8&usqp=CAU",
+  "https://assets.petbacker.com/user-images/320/u_07c1c6aa68.66359d0f96167.jpg",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcV8BnQLHKrMeN9OYkx9zPvSneHMGSXijpX8MNjLZ4LPHof_zPjLgQQbygpJSP7X0Zbdk&usqp=CAU",
+  "https://www.akc.org/wp-content/uploads/2021/03/Dachshund-excited-to-snuggle-and-kiss-a-young-man-on-the-couch.jpeg",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvRV3oxlRKkigYj600nRoiHjZVKq3YY8_ePlWSW2XL6CZ8Gus6o577s429WasOP_v7nIc&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWt2qetvLBrATVZKOxhw9AAs2ao51qqc7-Ug&s",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxYBcIGGuJewK8jMtiNBt260aUl7-ZOMbEZGwwdIu-MxsiUiE5a0H7zs6iz9gSVcs2Tw&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSSAWReslyHpk_96rEupJcr026RtTlJu-dzW1BEKRsEEgdzk8oaXAuDrFmuamnJgg9M8A&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmLorHmpJy8G9x7G82ITuZtiI-xxmQ2irMHA&s",
+  "https://media.graphassets.com/resize=height:360,width:1280/output=format:webp/YPwwfONKR5GaADHjEIme?width=1280",
+  "https://fetchpetcare.com/wp-content/uploads/2023/12/unconditional-love.jpg",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_4rNjsE1sQ7IXfzjEUK34s_TWRqsK9pHicmIpGg0i1t2ibMJCkdDPwvgLL2wJVruRuxA&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAkQ86rCHtXYGGyX8P9xjwodbu2iiIuzgWuFnGMGEehglbrnc0_PBe3pOw50dsI9JkCGc&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSskdoV_q04COuh3-XQhHtYYY3yeCDTFyDg4r5IGRwnXAeoyosVZCAdfwTk_HiXCjEoa8Y&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8lsAvSkJrarUkyK5uKkuCslSbQ__8OYRjXMP6fcBuPL6gQVkyUsdHwLA0LeAJ0rCayn8&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpN5HLnqKfUCHLwRs3cNSGyk1wgcaY03I_iUT0wPOKEHXSTxkiaUOO5LgqfaQB6_qFSqE&usqp=CAU"
+]
+
 def random_pet_image(pictures)
   sampled_picture = pictures.sample
   pictures.delete(sampled_picture)
@@ -69,7 +67,7 @@ puts "Creating users and petsitters..."
       price: rand(20..100) * 100,
       bio: Faker::Lorem.paragraph(sentence_count: 3),
       acceptable_pets: PETS.keys.sample(rand(1..4)).join(", "),
-      address: ADDRESSES.sample
+      # address: ADDRESSES.sample
     )
     petsitter.photo.attach(io: file, filename: "petsitter_#{i}.jpg", content_type: "image/jpeg")
   rescue OpenURI::HTTPError => e
@@ -85,7 +83,7 @@ end
     password: 'password123',
     username: Faker::Internet.unique.username,
     pets: PETS.keys.sample(rand(1..3)).join(", "),
-    address: Faker::Address.full_address,
+    address: ADDRESSES.sample,
     avatar: Faker::Avatar.image
   )
 
@@ -98,7 +96,8 @@ end
         user: user,
         price: rand(20..100) * 100,
         bio: Faker::Lorem.paragraph(sentence_count: 3),
-        acceptable_pets: PETS.keys.sample(rand(1..4)).join(", ")
+        acceptable_pets: PETS.keys.sample(rand(1..4)).join(", "),
+        # address: ADDRESSES.sample
       )
       petsitter.photo.attach(io: file, filename: "petsitter_#{i}.jpg", content_type: "image/jpeg")
     rescue OpenURI::HTTPError => e
