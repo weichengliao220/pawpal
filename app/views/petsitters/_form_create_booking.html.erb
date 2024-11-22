@@ -1,13 +1,7 @@
+<div data-controller="booking-price" data-booking-price-price-value="<%= @petsitter.price %>">
 <%= simple_form_for [@petsitter, @booking] do |f| %>
-  <%= f.input :start_date,
-              html5: true,
-              wrapper_html: { class: 'mb-3' },
-              input_html: { class: 'form-control' } %>
-
-  <%= f.input :end_date,
-              html5: true,
-              wrapper_html: { class: 'mb-3' },
-              input_html: { class: 'form-control' } %>
+  <%= f.input :start_date, html5: true, input_html: { data: { booking_price_target: 'start_date', action: 'change->booking-price#update' }, min: Date.today } %>
+  <%= f.input :end_date, html5: true, input_html: { data: { booking_price_target: 'end_date', action: 'change->booking-price#update' }, min: Date.today } %>
 
   <%= f.input :location,
               as: :boolean,
@@ -15,4 +9,10 @@
               wrapper_html: { class: 'mb-4' } %>
 
   <%= f.submit 'Book Now', class: 'btn btn-primary w-100' %>
+   <!-- Hidden when no dates chosen, total amount displayed here when changed -->
+    <p class='mt-3 d-flex align-items-center justify-content-between'>
+      <span data-booking-price-target='info'></span>
+      <span class='fw-bold' data-booking-price-target='price'></span>
+    </p>
 <% end %>
+</div>
