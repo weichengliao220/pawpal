@@ -1,21 +1,15 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-
 require 'faker'
 require 'open-uri'
 
 puts "Cleaning database..."
 Review.destroy_all
+puts "Reviews destroyed"
 Booking.destroy_all
+puts "Bookings destroyed"
 Petsitter.destroy_all
+puts "Petsitters destroyed"
 User.destroy_all
+puts "Users destroyed"
 
 # Array of pet types and their breeds
 PETS = {
@@ -38,6 +32,34 @@ end
 
 puts "Creating users and petsitters..."
 
+1.times do |i|
+  user = User.create!(
+    email: 'test@gmail.com',
+    password: 'testtest',
+    username: 'test_user',
+    pets: PETS.keys.sample(rand(1..3)).join(", "),
+    address: Faker::Address.full_address,
+    avatar: Faker::Avatar.image,
+    phone_number: "0785425253"
+  )
+
+  # Make some users petsitters (70% chance)
+
+  begin
+    file = URI.open(random_pet_image)
+    petsitter = Petsitter.create!(
+      user: user,
+      price: rand(20..100) * 100,
+      bio: Faker::Lorem.paragraph(sentence_count: 3),
+      acceptable_pets: PETS.keys.sample(rand(1..4)).join(", ")
+    )
+    petsitter.photo.attach(io: file, filename: "petsitter_#{i}.jpg", content_type: "image/jpeg")
+  rescue OpenURI::HTTPError => e
+    puts "Skipping image attachment for petsitter #{i} due to error: #{e.message}"
+    next
+  end
+end
+
 # Create 20 users, some of which will be petsitters
 20.times do |i|
   user = User.create!(
@@ -46,7 +68,8 @@ puts "Creating users and petsitters..."
     username: Faker::Internet.unique.username,
     pets: PETS.keys.sample(rand(1..3)).join(", "),
     address: Faker::Address.full_address,
-    avatar: Faker::Avatar.image
+    avatar: Faker::Avatar.image,
+    phone_number: "0785425253"
   )
 
   # Make some users petsitters (70% chance)
@@ -91,26 +114,16 @@ petsitters.each do |petsitter|
       location: [true, false].sample
     )
 
-    # Increase chance of reviews (90% chance) and include some lower ratings
+    # Create reviews only for completed bookings
     if booking.status == 'accepted' && booking.end_date < Date.today && rand < 0.9
       Review.create!(
         user: booking_user,
         petsitter: petsitter,
+        booking: booking,
         rating: rand(1..5),
         comment: Faker::Lorem.paragraph(sentence_count: 2)
       )
     end
-  end
-
-  # Add some additional direct reviews (2-4 more per petsitter)
-  rand(2..4).times do
-    review_user = users.reject { |u| u == petsitter.user }.sample
-    Review.create!(
-      user: review_user,
-      petsitter: petsitter,
-      rating: rand(1..5),
-      comment: Faker::Lorem.paragraph(sentence_count: 2)
-    )
   end
 end
 

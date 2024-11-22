@@ -7,9 +7,6 @@
       <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="mb-0">Dashboard</h2>
         <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            Filter View
-          </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li><a class="dropdown-item" href="#bookings-section">My Bookings</a></li>
             <li><a class="dropdown-item" href="#requests-section">My Requests</a></li>
@@ -32,7 +29,7 @@
                       <th>Status</th>
                       <th>Start Date</th>
                       <th>End Date</th>
-                      <th>Actions</th>
+                      <th>Actions/Rating</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -45,6 +42,8 @@
                             <span class="badge bg-success">Accepted</span>
                           <% when 'pending' %>
                             <span class="badge bg-warning text-dark">Pending</span>
+                          <% when 'expired' %>
+                            <span class="badge bg-warning text-dark">Past</span>
                           <% when 'declined' %>
                             <span class="badge bg-danger">Declined</span>
                           <% end %>
@@ -53,8 +52,23 @@
                         <td><%= booking.end_date.strftime("%B %d, %Y") %></td>
                         <td>
                           <div class="btn-group" role="group">
-                            <% if booking.status != 'declined' %>
-                              <%= button_to "Cancel", "#", method: :patch, class: "btn btn-sm btn-outline-danger", data: { confirm: "Are you sure you want to cancel this booking?" } %>
+                            <% if booking.status != 'declined' && booking.status != 'expired' %>
+                              <%= button_to "Cancel", cancel_booking_path(booking), method: :patch, class: "btn btn-sm me-2", data: { confirm: "Are you sure you want to cancel this booking?" } %>
+                            <% end %>
+                            <% if booking.status == 'expired' && !booking.rated? %>
+                              <button type="button" class="btn btn-sm btn-success me-2" data-bs-toggle="modal" data-bs-target="#myModal-<%= booking.id %>">
+                                Rate
+                              </button>
+                            <% end %>
+                            <% if booking.status == 'expired' && booking.rated? %>
+                              <div class="d-flex align-items-center">
+                                <% booking.star_count.times do %>
+                                  <i class="fas fa-star text-warning me-1"></i>
+                                <% end %>
+                                <% (5 - booking.star_count).times do %>
+                                  <i class="far fa-star text-warning me-1"></i>
+                                <% end %>
+                              </div>
                             <% end %>
                           </div>
                         </td>
@@ -98,6 +112,8 @@
                             <span class="badge bg-success">Accepted</span>
                           <% when 'pending' %>
                             <span class="badge bg-warning text-dark">Pending</span>
+                          <% when 'expired' %>
+                              <span class="badge bg-warning text-dark">Past</span>
                           <% when 'declined' %>
                             <span class="badge bg-danger">Declined</span>
                           <% end %>
@@ -110,7 +126,7 @@
                               <%= button_to "Accept", "#", method: :patch, class: "btn btn-sm btn-success me-2" %>
                               <%= button_to "Decline", "#", method: :patch, class: "btn btn-sm btn-danger" %>
                             <% else %>
-                              <%= link_to "View client details", "#", class: "btn btn-sm btn-outline-primary" %>
+                              <%= link_to "View Phone Number", phone_number_user_path(current_user), class: "btn btn-primary" %>
                             <% end %>
                           </div>
                         </td>
@@ -128,3 +144,35 @@
     </div>
   </div>
 </div>
+
+
+<% @bookings.each do |booking| %>
+  <div class="modal fade" id="myModal-<%= booking.id %>" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalLabel">Rate your petsitter</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= simple_form_for [booking, @review] do |f| %>
+            <div class="stars-container mb-3">
+              <div class="stars">
+                <% (1..5).each do |star| %>
+                  <%= f.radio_button :rating, star, id: "rating_#{star}_#{booking.id}", class: "rating-input d-none" %>
+                  <label for="rating_<%= star %>_<%= booking.id %>" class="star-label">
+                    <i class="fas fa-star fs-3 me-1"></i>
+                  </label>
+                <% end %>
+              </div>
+            </div>
+            <%= f.input :booking_id, as: :hidden, input_html: { value: booking.id } %>
+            <%= f.input :petsitter_id, as: :hidden, input_html: { value: booking.petsitter_id } %>
+            <%= f.input :comment, as: :text, label: 'Your Comment' %>
+            <%= f.submit 'Submit Review', class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

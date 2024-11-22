@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top">
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
-      <div class="d-flex flex-row align-items-center">
+      <div class="d-flex flex-row">
         <div class="heavy-text">PawPal</div>
         <div class="paw-icons">
           <i class="fa-solid fa-paw ms-2"></i>
@@ -10,11 +10,9 @@
         </div>
       </div>
     <% end %>
-
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto">
         <% if user_signed_in? %>
@@ -26,11 +24,18 @@
           </li>
           <li class="nav-item">
             <%= link_to "My Bookings", bookings_path, class: "nav-link" %>
+            <li class="nav-item">
+              <%= link_to "Reviews", reviews_path, class: "nav-link" %>
+            </li>
           </li>
           <li class="nav-item dropdown">
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "My Profile", "#", class: "dropdown-item" %>
+              <% if current_user.petsitter.present? %>
+                <%= link_to "My Profile", petsitter_path(Petsitter.find(current_user.petsitter.id)), class: "dropdown-item" %>
+              <% else %>
+                <%= link_to "Become a petsitter", new_petsitter_path, class: "dropdown-item"%>
+              <% end %>
               <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
             </div>
@@ -42,11 +47,10 @@
           <li class="nav-item">
             <%= link_to "Find a Petsitter", petsitters_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-outline-primary ms-2" %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+          <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-outline-primary ms-2" %>
+        </li>
+      <% end %>
+    </ul>
   </div>
+</div>
 </div>

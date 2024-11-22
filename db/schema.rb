@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_21_015835) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_22_010154) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,6 +73,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_21_015835) do
     t.bigint "petsitter_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "booking_id"
+    t.index ["booking_id"], name: "index_reviews_on_booking_id"
     t.index ["petsitter_id"], name: "index_reviews_on_petsitter_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
@@ -89,6 +91,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_21_015835) do
     t.string "pets"
     t.string "address"
     t.string "avatar"
+    t.string "phone_number"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -98,6 +101,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_21_015835) do
   add_foreign_key "bookings", "petsitters"
   add_foreign_key "bookings", "users"
   add_foreign_key "petsitters", "users"
+  add_foreign_key "reviews", "bookings"
   add_foreign_key "reviews", "petsitters"
   add_foreign_key "reviews", "users"
 end
