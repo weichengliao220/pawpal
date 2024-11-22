@@ -83,10 +83,10 @@ end
   user_booker = User.create!(
     email: 'booker@gmail.com',
     password: 'testtest',
-    username: 'test_user',
+    username: 'Esteban',
     pets: PETS.keys.sample(rand(1..3)).join(", "),
     address: Faker::Address.full_address,
-    avatar: Faker::Avatar.image,
+    avatar:   Faker::Avatar.image,
     phone_number: "0785425253"
   )
 end
