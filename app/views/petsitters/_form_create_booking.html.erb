@@ -1,9 +1,18 @@
 <%= simple_form_for [@petsitter, @booking] do |f| %>
+  <%= f.input :start_date,
+              html5: true,
+              wrapper_html: { class: 'mb-3' },
+              input_html: { class: 'form-control' } %>
 
-  <%= f.input :start_date %>
-  <%= f.input :end_date %>
-  <%= f.input :location, as: :boolean, label: 'Do you want the petsitter to keep your pet at his home ?' %>
+  <%= f.input :end_date,
+              html5: true,
+              wrapper_html: { class: 'mb-3' },
+              input_html: { class: 'form-control' } %>
 
-  <%= f.submit %>
+  <%= f.input :location,
+              as: :boolean,
+              label: 'Pet stays at petsitter\'s home?',
+              wrapper_html: { class: 'mb-4' } %>
 
+  <%= f.submit 'Book Now', class: 'btn btn-primary w-100' %>
 <% end %>
