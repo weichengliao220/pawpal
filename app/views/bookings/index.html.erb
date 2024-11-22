@@ -122,8 +122,8 @@
                         <td>
                           <div class="btn-group" role="group">
                             <% if booking.status == 'pending' %>
-                              <%= button_to "Accept", "#", method: :patch, class: "btn btn-sm btn-success me-2" %>
-                              <%= button_to "Decline", "#", method: :patch, class: "btn btn-sm btn-danger" %>
+                              <%= button_to "Accept", accept_booking_path(booking), method: :patch, class: "btn btn-sm btn-success me-2" %>
+                              <%= button_to "Decline", cancel_booking_path(booking), method: :patch, class: "btn btn-sm btn-danger" %>
                             <% else %>
                               <%= link_to "View client details", "#", class: "btn btn-sm btn-outline-primary" %>
                             <% end %>
