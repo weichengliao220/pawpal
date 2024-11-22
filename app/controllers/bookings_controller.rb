@@ -11,6 +11,15 @@ class BookingsController < ApplicationController
     petsitter_ids = Petsitter.where(user_id: current_user).pluck(:id)
     @requests = Booking.where(petsitter_id: petsitter_ids)
     @review = Review.new
+    @bookings -= @bookings.where(status: "declined")
+    @requests -= @requests.where(status: "declined")
+  end
+
+  def cancel
+    @booking = Booking.find(params[:id])
+    @booking.status = 'declined'
+    @booking.save
+    redirect_to bookings_path, notice: "Booking successfully canceled."
   end
 
   def show
