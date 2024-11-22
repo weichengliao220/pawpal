@@ -35,7 +35,8 @@
                   <tbody>
                     <% @bookings.sort_by { |b| b.status == 'accepted' ? 0 : 1 }.each do |booking| %>
                       <tr class="<%= 'bg-success bg-opacity-10' if booking.status == 'accepted' %>">
-                        <td><%= booking.user.username %></td>
+                        <td class="btn btn-sm">
+                          <%= link_to booking.petsitter.user.username, petsitter_path(booking.petsitter), class: "btn btn-sm btn-primary text-white" %></td>
                         <td>
                           <% case booking.status %>
                           <% when 'accepted' %>
