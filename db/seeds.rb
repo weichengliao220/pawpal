@@ -3,9 +3,13 @@ require 'open-uri'
 
 puts "Cleaning database..."
 Review.destroy_all
+puts "Reviews destroyed"
 Booking.destroy_all
+puts "Bookings destroyed"
 Petsitter.destroy_all
+puts "Petsitters destroyed"
 User.destroy_all
+puts "Users destroyed"
 
 # Array of pet types and their breeds
 PETS = {
