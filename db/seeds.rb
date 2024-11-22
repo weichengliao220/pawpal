@@ -99,7 +99,7 @@ users = User.all
 # Create bookings and reviews
 petsitters.each do |petsitter|
   # Create 8-12 bookings for each petsitter
-  rand(8..12).times do
+  rand(20..25).times do
     # Select a random user who isn't the petsitter
     booking_user = users.reject { |u| u == petsitter.user }.sample
 
@@ -110,7 +110,7 @@ petsitters.each do |petsitter|
       petsitter: petsitter,
       start_date: start_date,
       end_date: start_date + rand(1..7).days,
-      status: %w[pending accepted declined].sample,
+      status: %w[pending].sample,
       location: [true, false].sample
     )
 
