@@ -5,14 +5,33 @@
   <div class="filter-banner mt-3 d-flex justify-content-between px-5">
     <div>
       <h2 class="fw-bold">Petsitters</h2>
+      <% if params[:breed].present? || params[:location].present?  %>
+        <h5>Filters:</h5>
+        <% if params[:breed].present? %>
+          <span class="badge text-bg-secondary rounded-pill">
+            <%= params[:breed] %>
+          </span>
+        <% end %>
+
+        <% if params[:location].present? %>
+          <span class="badge text-bg-secondary rounded-pill">
+            <%= params[:location] %>
+          </span>
+        <% end %>
+        <button onclick="window.location.href='/petsitters';" type="button" class="btn btn-light rounded-pill"
+        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 0.9rem; font-weight: light">
+          Clear Filter
+        </button>
+      <% end %>
+
     </div>
     <div>
-      <h5 class>Filters</h5>
+      <h5 class>Filters </h5>
       <%= form_with(url: petsitters_path, method: :get, local: true) do |f| %>
         <%= f.select :breed, options_for_select(@breeds, params[:breed]), { include_blank: 'Select a Breed' }, class: "form-select" %>
         <div class="row mt-2">
           <div class="col-8 pe-0">
-            <%= f.text_field :location, placeholder: "Enter location...", class: "form-control" %>
+            <%= f.text_field :location, value: params[:location], placeholder: "Enter location...", class: "form-control" %>
           </div>
           <div class="col-4">
             <%= f.submit "Search", class: "btn btn-primary w-100" %>
@@ -23,22 +42,28 @@
   </div>
   <div class="container">
     <div class="row mt-3">
-      <% icon_animals = ["fa-solid fa-dog", "fa-solid fa-cat", "fa-solid fa-crow"] %>
+      <% icon_animals = ["fa-solid fa-dog", "fa-solid fa-cat", "fa-solid fa-crow", "fa-solid fa-fish"] %>
       <% @petsitters.each do |petsitter| %>
         <div class="col-3">
           <div class="petsitter-card">
             <div class="card-image position-relative">
               <%= link_to petsitter_path(petsitter) do %>
-              <% if petsitter.photo.attached? %>
-                <%= cl_image_tag(petsitter.photo.key, crop: :fill) %>
-               <% icon_animals.sample(rand(1..3)).each_with_index do |icon_animal, index| %>
-                <div class= "icon-overlay icon-black" style="left: <%= (index *40) + 10%>px">
-                  <i class="animal-icon-circle <%=icon_animal%>"></i>
-                </div>
-               <% end %>
-               <% else %>
-               <p>You don't have an image</p>
-              <% end %>
+                <% if petsitter.photo.attached? %>
+                  <%= cl_image_tag(petsitter.photo.key, crop: :fill) %>
+                  <% petsitter.acceptable_pets.split(", ").each_with_index do |acceptable_pet, index| %>
+                    <% if acceptable_pet == "bird" %>
+                      <div class= "icon-overlay icon-black" style="left: <%= (index *40) + 10%>px">
+                        <i class="animal-icon-circle fa-solid fa-crow"></i>
+                      </div>
+                    <% else %>
+                      <div class= "icon-overlay icon-black" style="left: <%= (index *40) + 10%>px">
+                        <i class="animal-icon-circle fa-solid fa-<%= acceptable_pet %>"></i>
+                      </div>
+                    <% end %>
+                  <% end %>
+                <% else %>
+                  <p>You don't have an image</p>
+                <% end %>
               <% end %>
             </div>
             <div class="card-info">
