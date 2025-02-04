@@ -54,8 +54,8 @@ puts "Creating users and petsitters..."
 
 1.times do |i|
   user = User.create!(
-    email: 'petsitter@gmail.com',
-    password: 'testtest',
+    email: 'user@example.com',
+    password: 'password',
     username: 'Adam',
     pets: PETS.keys.sample(rand(1..3)).join(", "),
     address: ADDRESSES.sample,
