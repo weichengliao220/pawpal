@@ -80,5 +80,4 @@ test:
 production:
   <<: *default
   database: paw_pal_production
-  username: paw_pal
-  password: <%= ENV["PAW_PAL_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
