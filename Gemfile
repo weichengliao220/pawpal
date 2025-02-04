@@ -76,3 +76,4 @@ end
 gem "devise"
 gem "cloudinary"
 gem 'faker'
+gem 'mini_racer'
