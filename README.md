@@ -6,7 +6,7 @@ PawPal is currently hosted and live on Heroku: https://pawpal-bae480293655.herok
 
 For a quick demonstration purpose, you can log in to the app using the following credentials:
 
-📧Email: user@example.com
+📧Email: user@example.com<br>
 🔑Password: password
 
 ⚠️Note: This app is hosted on Heroku using an Eco Dynos plan, which enters sleep mode after a period of inactivity. As a result, the first request after inactivity may take up to a minute to load.
